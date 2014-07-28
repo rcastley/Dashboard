@@ -45,7 +45,6 @@ class CollectorController extends Zend_Controller_Action
                 $testMapper->create($newTest);
             }
             
-            echo $xml->attributes()->testId;
             $summary = new Application_Model_Summary(
                     array(
                             'testid' => $xml->attributes()->testId,
@@ -72,7 +71,6 @@ class CollectorController extends Zend_Controller_Action
                     ));
             
             $summaryMapper->create($summary);
-
         }
     }
 }

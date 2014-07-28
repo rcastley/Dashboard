@@ -84,7 +84,6 @@ class Application_Model_Summary
 
     public function setTestid ($n)
     {
-        //var_dump($n);
         $this->_testid = (int) $n;
         return $this;
     }

@@ -1,0 +1,6 @@
+/library/Zend/
+.settings/
+.DS_Store
+.buildpath
+.project
+.zfproject.xml

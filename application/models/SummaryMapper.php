@@ -102,15 +102,17 @@ class Application_Model_SummaryMapper
                         'interval' => "datetime((strftime('%s', timestamp) / 900) * 900, 'unixepoch')",
                         'total' => 'AVG(total)'
                 ))
+            ->join(array(
+                't' => 'tests'
+        ), 's.testid = t.id')
             ->where("DATE(timestamp) >=  date('now', '-1 day')")
             ->order('interval', 'testid')
-           ->group('interval', 'testid');
-           // ->order('testid');
-        //->group("strftime('%H', timestamp)");
+            ->group('interval', 'testid')
+            ->setIntegrityCheck(false);
         
         $resultSet = $this->getDbTable()->fetchAll($query);
         
-       echo $query->__toString();
+        // echo $query->__toString();
         return $resultSet;
     }
 }

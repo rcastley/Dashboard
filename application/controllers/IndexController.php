@@ -5,13 +5,15 @@ class IndexController extends Zend_Controller_Action
 
     protected $_tests;
     
+    protected $_nodes;
+    
     protected $_summary;
     
     public function init()
     {
         $this->_tests = new Application_Model_TestsMapper();
         
-       
+        $this->_nodes = new Application_Model_NodesMapper();
         
         $this->_summary = new Application_Model_SummaryMapper();
     }
@@ -26,8 +28,7 @@ class IndexController extends Zend_Controller_Action
         
         $this->view->uptime = $this->_summary->fetchAll()->count();
         
-        print_r($this->_summary->fetchAll()->count());
-               
+        $this->view->nodes = $this->_nodes->fetchAll()->count();               
     }
 
     public function failedAction()

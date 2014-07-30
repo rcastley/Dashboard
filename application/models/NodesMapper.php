@@ -34,12 +34,18 @@ class Application_Model_NodesMapper
         $this->getDbTable()->insert($data);
     }
 
-    public function fetchAll ($id)
+    public function fetchRow ($id)
     {
         $query = $this->getDbTable()
             ->select()
             ->where('id = ?', $id);
         $resultSet = $this->getDbTable()->fetchRow($query);
+        return $resultSet;
+    }
+    
+    public function fetchAll ()
+    {
+        $resultSet = $this->getDbTable()->fetchAll();
         return $resultSet;
     }
 }

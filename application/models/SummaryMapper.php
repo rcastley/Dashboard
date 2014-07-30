@@ -62,28 +62,52 @@ class Application_Model_SummaryMapper
         $resultSet = $this->getDbTable()->fetchRow($query);
         return $resultSet;
     }
-    
+
     public function fetchFailed ()
     {
         $query = $this->getDbTable()
-        ->select()
-        //->from(array('s' => 'summary'), array('tdate' => 'DATE(timestamp)'))
-        ->where('error != 0')
-        ->where("DATE(timestamp) >=  date('now', '-1 day')");
+            ->select()
+            ->where('error != 0')
+            ->where("DATE(timestamp) >=  date('now', '-1 day')");
         $resultSet = $this->getDbTable()->fetchAll($query);
         
         return $resultSet;
     }
-    
+
     public function fetchAll ()
     {
         $query = $this->getDbTable()
-        ->select()
-        ->from(array('s' => 'summary'), array('tdate' => 'DATE(timestamp)'))
-        ->where("tdate >=  date('now', '-1 day')");
-                
+            ->select()
+            ->from(array(
+                's' => 'summary'
+        ), array(
+                'tdate' => 'DATE(timestamp)'
+        ))
+            ->where("tdate >=  date('now', '-1 day')");
+        
         $resultSet = $this->getDbTable()->fetchAll($query);
         
+        return $resultSet;
+    }
+
+    public function dailyPerf ($id)
+    {
+        $query = $this->getDbTable()
+            ->select()
+            ->from(array(
+                's' => 'summary'
+        ), 
+                array(
+                        'testid',
+                        'timestamp',
+                        'total'
+                ))
+            ->where("DATE(timestamp) >=  date('now', '-1 day')");
+        //->group("strftime('%H', timestamp)");
+        
+        $resultSet = $this->getDbTable()->fetchAll($query);
+        
+        //echo $query->__toString();
         return $resultSet;
     }
 }

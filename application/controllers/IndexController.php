@@ -38,7 +38,7 @@ class IndexController extends Zend_Controller_Action
             $data = $this->_summary->dailyPerf($test->id);
             $keysArray[] = $test->id;
             foreach ($data as $d) {
-                $dataArray[] = array('y' => $d->timestamp, $d->testid => $d->total);
+                $dataArray[] = array('y' => $d->interval, $d->testid => $d->total);
             
             }
         }

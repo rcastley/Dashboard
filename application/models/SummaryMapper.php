@@ -99,7 +99,7 @@ class Application_Model_SummaryMapper
         ), 
                 array(
                         'testid',
-                        'timestamp',
+                        'interval' => "datetime((strftime('%s', timestamp) / 900) * 900, 'unixepoch')",
                         'total'
                 ))
             ->where("DATE(timestamp) >=  date('now', '-1 day')");
@@ -107,7 +107,7 @@ class Application_Model_SummaryMapper
         
         $resultSet = $this->getDbTable()->fetchAll($query);
         
-        //echo $query->__toString();
+        echo $query->__toString();
         return $resultSet;
     }
 }

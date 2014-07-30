@@ -53,12 +53,23 @@ class Application_Model_SummaryMapper
         $this->getDbTable()->insert($data);
     }
 
-    public function fetchAll ($testId)
+    public function fetchRow ($testId)
     {
         $query = $this->getDbTable()
             ->select()
             ->where('testid = ?', $testId);
         $resultSet = $this->getDbTable()->fetchRow($query);
+        return $resultSet;
+    }
+    
+    public function fetchFailed ()
+    {
+        $query = $this->getDbTable()
+        ->select()
+        ->from(array('s' => 'summary'), array('tdate' => 'DATE(timestamp)'))
+        ->where('total > ?', '29500')
+        ->where("tdate >=  date('now', '-1 day')");
+        $resultSet = $this->getDbTable()->fetchAll($query);
         return $resultSet;
     }
 }

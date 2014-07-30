@@ -11,6 +11,15 @@ class IndexController extends Zend_Controller_Action
     public function indexAction()
     {
         // action body
+        $tests = new Application_Model_TestsMapper();
+        
+        $this->view->count = $tests->fetchAll()->count();
+        
+        $summary = new Application_Model_SummaryMapper();
+        
+        print_r ($summary->fetchFailed()->count());
+        $this->view->failed = $summary->fetchFailed()->count();
+        
     }
 
 

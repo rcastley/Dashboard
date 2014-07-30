@@ -69,7 +69,7 @@ class Application_Model_SummaryMapper
             ->select()
             ->from(array('s'=> 'summary'), array('s.testid', 's.nodeid', 's.error', 's.timestamp'))
             ->join(array('t' => 'tests'), 'testid = t.id', array('t.name'))
-            ->join(array('n' => 'nodes'), 'nodeid = n.id', array('n.name'))
+            ->join(array('n' => 'nodes'), 'nodeid = n.id', array('n.name' => 'nodename'))
             ->where('error != 0')
             ->where("DATE(timestamp) >=  date('now', '-1 day')")
             ->setIntegrityCheck(false);

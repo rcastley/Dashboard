@@ -44,6 +44,8 @@ class Application_Model_Summary
     protected $_failedrequests;
 
     protected $_requests;
+    
+    protected $_error;
 
     public function __construct (array $options = null)
     {
@@ -315,6 +317,17 @@ class Application_Model_Summary
     public function getRequests ()
     {
         return $this->_requests;
+    }
+    
+    public function setError ($n)
+    {
+        $this->_error = (int) $n;
+        return $this;
+    }
+    
+    public function getError ()
+    {
+        return $this->_error;
     }
 }
 

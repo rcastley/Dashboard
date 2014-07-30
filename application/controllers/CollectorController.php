@@ -67,7 +67,8 @@ class CollectorController extends Zend_Controller_Action
                             'connections' => $xml->Summary->Counter->Connections,
                             'hosts' => $xml->Summary->Counter->Hosts,
                             'failedrequests' => $xml->Summary->Counter->FailedRequests,
-                            'requests' => $xml->Summary->Counter->Requests
+                            'requests' => $xml->Summary->Counter->Requests,
+                            'error' => $xml->Summary->Error->attributes()->code
                     ));
             
             $summaryMapper->create($summary);

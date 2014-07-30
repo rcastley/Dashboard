@@ -34,6 +34,6 @@ CREATE TABLE "summary" (
 	"connections" integer NULL,
 	"hosts" integer NULL,
 	"failedrequests" integer NULL,
-	"requests" integer NULL
+	"requests" integer NULL,
+	"error" integer NULL
 );
-

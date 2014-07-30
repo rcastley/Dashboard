@@ -48,7 +48,8 @@ class Application_Model_SummaryMapper
                 'connections' => $data->getConnections(),
                 'hosts' => $data->getHosts(),
                 'failedrequests' => $data->getFailedrequests(),
-                'requests' => $data->getRequests()
+                'requests' => $data->getRequests(),
+                'error' => $data->getError()
         );
         $this->getDbTable()->insert($data);
     }
@@ -67,6 +68,7 @@ class Application_Model_SummaryMapper
         $query = $this->getDbTable()
         ->select()
         ->from(array('s' => 'summary'), array('tdate' => 'DATE(timestamp)'))
+        ->where('failedrequests > 1')
         ->where('total > ?', '29500')
         ->where("tdate >=  date('now', '-1 day')");
         $resultSet = $this->getDbTable()->fetchAll($query);

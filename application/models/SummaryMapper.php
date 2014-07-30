@@ -67,9 +67,9 @@ class Application_Model_SummaryMapper
     {
         $query = $this->getDbTable()
             ->select()
-            ->from(array('s'=> 'summary'), array('s.testid', 's.nodeid', 's.error', 's.timestamp', 'nodename' => 'n.name'))
-            ->join(array('t' => 'tests'), 'testid = t.id', array('name'))
-            ->join(array('n' => 'nodes'), 'nodeid = n.id', array('name'))
+            ->from(array('s'=> 'summary'), array('s.testid', 's.nodeid', 's.error', 's.timestamp', 'nodename' => 'n.name', 'testname' => 't.name'))
+            ->join(array('t' => 'tests'), 'testid = t.id', array())
+            ->join(array('n' => 'nodes'), 'nodeid = n.id', array())
             ->where('error != 0')
             ->where("DATE(timestamp) >=  date('now', '-1 day')")
             ->setIntegrityCheck(false);

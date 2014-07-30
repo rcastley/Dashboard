@@ -68,8 +68,7 @@ class Application_Model_SummaryMapper
         $query = $this->getDbTable()
         ->select()
         ->from(array('s' => 'summary'), array('tdate' => 'DATE(timestamp)'))
-        ->where('failedrequests > 1')
-        ->where('total > ?', '29500')
+        ->where('error != 0')
         ->where("tdate >=  date('now', '-1 day')");
         $resultSet = $this->getDbTable()->fetchAll($query);
         return $resultSet;

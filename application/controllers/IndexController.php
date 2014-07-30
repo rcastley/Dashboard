@@ -40,7 +40,7 @@ class IndexController extends Zend_Controller_Action
             
             $keysArray[] = $test->name;
             foreach ($data as $d) {
-                $dataArray[] = array('y' => $d->interval, $d->name => number_format($d->total, 2, '.', ','));
+                $dataArray[] = array('y' => $d->interval, $d->name => number_format($d->total, 0, '.', ''));
             
             }
         }

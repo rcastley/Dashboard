@@ -31,13 +31,13 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                        <?php foreach($this->tests as $test) :?>
+                                        <?php foreach($this->tests as $test) :?><?php print_r ($test)?>
         <tr>
-        <td><?php  echo $test->s.timestamp ?> </td>
-        <td><?php echo $test->t.name ?> </td>
-        <td><?php  echo $test->s.testid ?> </td>
-                <td><?php  echo $test->n.nodeid ?> </td>
-                <td><?php  echo $test->s.error ?> </td>
+        <td><?php  echo $test->timestamp ?> </td>
+        <td><?php echo $test->name ?> </td>
+        <td><?php  echo $test->testid ?> </td>
+                <td><?php  echo $test->nodeid ?> </td>
+                <td><?php  echo $test->error ?> </td>
         
         </tr>
         <?php endforeach;?>

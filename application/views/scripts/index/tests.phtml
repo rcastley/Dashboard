@@ -32,10 +32,10 @@
                                 <tbody>
                                         <?php foreach($this->tests as $test) :?>
         <tr>
-        <td><?php  echo $test->name ?> </td>
+        <td><a href="/index/testdetail/id/<?php echo $test->id ?>"><?php  echo $test->name ?></a></td>
         <td><?php  echo $test->id ?> </td>
-                <td><?php  echo $test->type ?> </td>
-                <td><?php  echo $test->monitor ?> </td>
+                <td><?php  echo $this->type->Types($test->type) ?> </td>
+                <td><?php  echo $this->monitor->Monitors($test->monitor) ?> </td>
         
         </tr>
         <?php endforeach;?>

@@ -34,7 +34,7 @@ class IndexController extends Zend_Controller_Action
         foreach ($tests as $test) {
             $dataArray = array();
             
-            $data = $this->_summary->dailyPerf($test->id);
+            $data = $this->_summary->dailyPerfAll($test->id);
             
             $keysArray[] = $test->name;
             foreach ($data as $d) {

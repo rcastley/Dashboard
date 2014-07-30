@@ -122,4 +122,30 @@ class Application_Model_SummaryMapper
          echo $query->__toString();
         return $resultSet;
     }
+    
+    public function dailyPerfAll ($id)
+    {
+        $query = $this->getDbTable()
+        ->select()
+        ->from(array(
+                's' => 'summary'
+        ),
+                array(
+                        'testid',
+                        'interval' => "datetime((strftime('%s', timestamp) / 900) * 900, 'unixepoch')",
+                        'total' => 'AVG(total)'
+                ))
+                ->join(array(
+                        't' => 'tests'
+                ), 's.testid = t.id')
+                ->where("DATE(timestamp) >=  date('now', '-1 day')")
+                ->order('interval', 'testid')
+                ->group('interval', 'testid')
+                ->setIntegrityCheck(false);
+    
+        $resultSet = $this->getDbTable()->fetchAll($query);
+    
+        echo $query->__toString();
+        return $resultSet;
+    }
 }

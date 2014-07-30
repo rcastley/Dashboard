@@ -67,9 +67,9 @@ class Application_Model_SummaryMapper
     {
         $query = $this->getDbTable()
         ->select()
-        ->from(array('s' => 'summary'), array('tdate' => 'DATE(timestamp)'))
+        //->from(array('s' => 'summary'), array('tdate' => 'DATE(timestamp)'))
         ->where('error != 0')
-        ->where("tdate >=  date('now', '-1 day')");
+        ->where("DATE(timestamp) >=  date('now', '-1 day')");
         $resultSet = $this->getDbTable()->fetchAll($query);
         
         return $resultSet;

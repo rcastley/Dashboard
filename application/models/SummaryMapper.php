@@ -67,7 +67,7 @@ class Application_Model_SummaryMapper
     {
         $query = $this->getDbTable()
             ->select()
-            ->from(array('s'=> 'summary'), array('s.testid', 's.nodeid', 's.error', 's.timestamp'))
+            ->from(array('s'=> 'summary'), array('s.testid', 's.nodeid', 's.error', 's.timestamp', 'nodename' => 'n.name'))
             ->join(array('t' => 'tests'), 'testid = t.id', array('name'))
             ->join(array('n' => 'nodes'), 'nodeid = n.id', array('name'))
             ->where('error != 0')
@@ -76,7 +76,7 @@ class Application_Model_SummaryMapper
             
         $resultSet = $this->getDbTable()->fetchAll($query);
         
-        //echo $query->__toString();
+        echo $query->__toString();
         return $resultSet;
     }
 

@@ -32,9 +32,10 @@ class IndexController extends Zend_Controller_Action
 
         $tests = $this->_tests->fetchAll();
         
+        $keysArray = array();
         foreach ($tests as $test) {
             $dataArray = array();
-            $keysArray = array();
+           
             $data = $this->_summary->dailyPerf($test->id);
             $keysArray[] = $test->id;
             foreach ($data as $d) {
@@ -43,7 +44,6 @@ class IndexController extends Zend_Controller_Action
             }
         }
         
-        print_r($keysArray);
        $this->view->chartData = json_encode($dataArray);
        $this->view->keys = json_encode($keysArray);
        

@@ -102,12 +102,14 @@ class Application_Model_SummaryMapper
                         'interval' => "datetime((strftime('%s', timestamp) / 900) * 900, 'unixepoch')",
                         'total'
                 ))
-            ->where("DATE(timestamp) >=  date('now', '-1 day')");
+            ->where("DATE(timestamp) >=  date('now', '-1 day')")
+           //->group('interval')
+            ->order('testid');
         //->group("strftime('%H', timestamp)");
         
         $resultSet = $this->getDbTable()->fetchAll($query);
         
-        echo $query->__toString();
+       // echo $query->__toString();
         return $resultSet;
     }
 }

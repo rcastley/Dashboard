@@ -25,12 +25,19 @@ class IndexController extends Zend_Controller_Action
         $this->view->failed = $this->_summary->fetchFailed()->count();
         
         $this->view->uptime = $this->_summary->fetchAll()->count();
+        
+        print_r($this->_summary->fetchAll()->count());
                
     }
 
     public function failedAction()
     {
         $this->view->failed = $this->_summary->fetchFailed();
+    }
+    
+    public function testsAction()
+    {
+        $this->view->tests = $this->_tests->fetchAll();
     }
 
 }

@@ -66,7 +66,7 @@ class CollectorController extends Zend_Controller_Action
                             'totalheaders' => $xml->Summary->Byte->Response->TotalHeaders,
                             'connections' => $xml->Summary->Counter->Connections,
                             'hosts' => $xml->Summary->Counter->Hosts,
-                            'failedrequests' => $xml->Summary->Counter_FailedRequests,
+                            'failedrequests' => $xml->Summary->Counter->FailedRequests,
                             'requests' => $xml->Summary->Counter->Requests
                     ));
             

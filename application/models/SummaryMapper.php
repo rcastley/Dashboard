@@ -34,23 +34,23 @@ class Application_Model_SummaryMapper
                 'total' => $data->getTotal(),
                 'connect' => $data->getConnect(),
                 'dns' => $data->getDns(),
-                'contentload' => $data->getContentLoad(),
+                'contentload' => $data->getContentload(),
                 'load' => $data->getLoad(),
                 'send' => $data->getSend(),
                 'wait' => $data->getWait(),
-                'documentcomplete' => $data->getDocumentComplete(),
-                'domload' => $data->getDomLoad(),
-                'renderstart' => $data->getRenderStart(),
+                'documentcomplete' => $data->getDocumentcomplete(),
+                'domload' => $data->getDomload(),
+                'renderstart' => $data->getRenderstart(),
                 'content' => $data->getContent(),
                 'headers' => $data->getHeaders(),
-                'totalcontent' => $data->getTotalContent(),
-                'totalheaders' => $data->getTotalHeaders(),
+                'totalcontent' => $data->getTotalcontent(),
+                'totalheaders' => $data->getTotalheaders(),
                 'connections' => $data->getConnections(),
                 'hosts' => $data->getHosts(),
-                'failedrequests' => $data->getFailedRequests(),
+                'failedrequests' => $data->getFailedrequests(),
                 'requests' => $data->getRequests()
         );
-        var_dump($this->getDbTable()->insert($data));
+        $this->getDbTable()->insert($data);
     }
 
     public function fetchAll ($testId)
@@ -62,4 +62,3 @@ class Application_Model_SummaryMapper
         return $resultSet;
     }
 }
-

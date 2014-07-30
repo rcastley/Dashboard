@@ -31,7 +31,7 @@ class CollectorController extends Zend_Controller_Action
                 $nodeMapper->create($newNode);
             }
             
-            $checkTest = $testMapper->fetchAll($xml->attributes()->testId);
+            $checkTest = $testMapper->fetchRow($xml->attributes()->testId);
             
             if (! $checkTest) {
                 $newTest = new Application_Model_Tests(

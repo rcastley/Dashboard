@@ -53,6 +53,7 @@ class IndexController extends Zend_Controller_Action
     public function failedAction()
     {
         $this->view->tests = $this->_summary->fetchFailed();
+        print_r ($this->_summary->fetchFailed());
     }
     
     public function testsAction()

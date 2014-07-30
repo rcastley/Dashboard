@@ -15,6 +15,10 @@ class CollectorController extends Zend_Controller_Action
         $testMapper = new Application_Model_TestsMapper();
         $summaryMapper = new Application_Model_SummaryMapper();
         
+        $f = fopen("./capture.xml", "w");
+        fwrite($f, $this->getRequest()->getRawBody());
+        fclose($f);
+        
         $xml = simplexml_load_string($this->getRequest()->getRawBody());
         
         if ($this->getRequest()->isPost()) {

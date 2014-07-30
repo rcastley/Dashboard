@@ -112,6 +112,7 @@ class Application_Model_SummaryMapper
                 't' => 'tests'
         ), 's.testid = t.id')
             ->where("DATE(timestamp) >=  date('now', '-1 day')")
+            ->where("s.testid = ?", $id)
             ->order('interval', 'testid')
             ->group('interval', 'testid')
             ->setIntegrityCheck(false);

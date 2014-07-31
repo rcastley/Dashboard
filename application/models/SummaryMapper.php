@@ -85,7 +85,7 @@ class Application_Model_SummaryMapper
                 'n' => 'nodes'
         ), 'nodeid = n.id', array())
             ->where('error != 0')
-            ->where("DATE(timestamp) >=  date('now', '-1 day')")
+            ->where("timestamp >=  datetime('now', '-1 day')")
             ->setIntegrityCheck(false);
         
         $resultSet = $this->getDbTable()->fetchAll($query);
@@ -100,10 +100,8 @@ class Application_Model_SummaryMapper
             ->select()
             ->from(array(
                 's' => 'summary'
-        ), array(
-                'tdate' => 'DATE(timestamp)'
         ))
-            ->where("tdate >=  date('now', '-1 day')");
+            ->where("timestamp >=  datetime('now', '-1 day')");
         
         $resultSet = $this->getDbTable()->fetchAll($query);
         
@@ -125,7 +123,7 @@ class Application_Model_SummaryMapper
             ->join(array(
                 't' => 'tests'
         ), 's.testid = t.id')
-            ->where("DATE(timestamp) >=  date('now', '-1 day')")
+            ->where("timestamp >=  datetime('now', '-1 day')")
             ->where("s.testid = ?", $id)
             ->order(array(
                 'interval',
@@ -139,7 +137,7 @@ class Application_Model_SummaryMapper
         
         $resultSet = $this->getDbTable()->fetchAll($query);
         
-        // echo $query->__toString();
+        echo $query->__toString();
         return $resultSet;
     }
 }

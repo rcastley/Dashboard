@@ -14,13 +14,13 @@ Setting Up Your VHOST
 The following is a sample VHOST you might want to consider for your project.
 
 <VirtualHost *:80>
-   DocumentRoot "/Users/rcastley/Downloads/ZendFramework-1.12.7-minimal/bin/dashboard/public"
+   DocumentRoot “/var/www/dashboard/public"
    ServerName dashboard.local
 
    # This should be omitted in the production environment
    SetEnv APPLICATION_ENV development
 
-   <Directory "/Users/rcastley/Downloads/ZendFramework-1.12.7-minimal/bin/dashboard/public">
+   <Directory “/var/www/dashboard/public">
        Options Indexes MultiViews FollowSymLinks
        AllowOverride All
        Order allow,deny

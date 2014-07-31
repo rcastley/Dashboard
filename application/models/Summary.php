@@ -112,7 +112,6 @@ class Application_Model_Summary
         $nDate = date_format($date, 'Y-m-d H:i:s');
         $this->_timestamp = $nDate;
         
-        var_dump($nDate);
         return $this;
     }
 

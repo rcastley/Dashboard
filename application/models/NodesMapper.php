@@ -31,7 +31,14 @@ class Application_Model_NodesMapper
                 'id' => $node->getId(),
                 'name' => $node->getName()
         );
-        $this->getDbTable()->insert($data);
+        
+        $check = $this->fetchRow($node->getId());
+        
+        if (null === ($id = $check)) {
+            $this->getDbTable()->insert($data);
+        } else {
+            $this->getDbTable()->update($data, array("id = ?" => $check->id));
+        }
     }
 
     public function fetchRow ($id)

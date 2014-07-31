@@ -21,7 +21,7 @@ class CollectorController extends Zend_Controller_Action
         $dom->preserveWhiteSpace = false;
         $dom->formatOutput = true;
         $dom->loadXML($xml->asXML());
-        //echo $dom->saveXML();
+        // echo $dom->saveXML();
         
         $f = fopen("/tmp/capture.xml", "w+");
         fwrite($f, $dom->saveXML());
@@ -29,31 +29,23 @@ class CollectorController extends Zend_Controller_Action
         
         if ($this->getRequest()->isPost()) {
             
-            $checkNode = $nodeMapper->fetchAll($xml->attributes()->nodeId);
+            $newNode = new Application_Model_Nodes(
+                    array(
+                            'id' => $xml->attributes()->nodeId,
+                            'name' => $xml->NodeName
+                    ));
             
-            if (! $checkNode) {
-                $newNode = new Application_Model_Nodes(
-                        array(
-                                'id' => $xml->attributes()->nodeId,
-                                'name' => $xml->NodeName
-                        ));
-                
-                $nodeMapper->create($newNode);
-            }
+            $nodeMapper->create($newNode);
             
-            $checkTest = $testMapper->fetchRow($xml->attributes()->testId);
+            $newTest = new Application_Model_Tests(
+                    array(
+                            'id' => $xml->attributes()->testId,
+                            'type' => $xml->TestDetail->TypeId,
+                            'monitor' => $xml->TestDetail->MonitorTypeId,
+                            'name' => $xml->TestDetail->Name
+                    ));
             
-            if (! $checkTest) {
-                $newTest = new Application_Model_Tests(
-                        array(
-                                'id' => $xml->attributes()->testId,
-                                'type' => $xml->TestDetail->TypeId,
-                                'monitor' => $xml->TestDetail->MonitorTypeId,
-                                'name' => $xml->TestDetail->Name
-                        ));
-                
-                $testMapper->create($newTest);
-            }
+            $testMapper->create($newTest);
             
             $summary = new Application_Model_Summary(
                     array(

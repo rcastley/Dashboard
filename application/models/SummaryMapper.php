@@ -119,7 +119,7 @@ class Application_Model_SummaryMapper
         
         $resultSet = $this->getDbTable()->fetchAll($query);
         
-         echo $query->__toString();
+        //echo $query->__toString();
         return $resultSet;
     }
     
@@ -145,7 +145,7 @@ class Application_Model_SummaryMapper
     
         $resultSet = $this->getDbTable()->fetchAll($query);
     
-        echo $query->__toString();
+        //echo $query->__toString();
         return $resultSet;
     }
 }

@@ -57,7 +57,8 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">Catchpoint Dashboard</a>
+                <a href="/"><img class="img-responsive" src="/images/cp-logo.png" alt="Home"></a>
+                
             </div>
             <!-- Top Menu Items -->
             <ul class="nav navbar-right top-nav">
@@ -83,11 +84,11 @@
             <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav side-nav">
-                    <li class="active">
+                    <li>
                         <a href="/"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
                     </li>
                     <li>
-                        <a href="/charts"><i class="fa fa-fw fa-bar-chart-o"></i> Charts</a>
+                        <a href="/index/tests"><i class="fa fa-fw fa-bar-chart-o"></i> Tests</a>
                     </li>
                     <li>
                         <a href="/tables"><i class="fa fa-fw fa-table"></i> Tables</a>
@@ -112,7 +113,15 @@
 
     </div>
     <!-- /#wrapper -->
-
+    <script>
+    var url = window.location;
+ // Will only work if string in href matches with location
+ $('ul.nav a[href="' + url + '"]').parent().addClass('active');
+ // Will also work for relative and absolute hrefs
+ $('ul.nav a').filter(function() {
+     return this.href == url;
+ }).parent().addClass('active');
+    </script>
 </body>
 
 </html>

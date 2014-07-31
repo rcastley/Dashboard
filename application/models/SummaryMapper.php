@@ -67,16 +67,30 @@ class Application_Model_SummaryMapper
     {
         $query = $this->getDbTable()
             ->select()
-            ->from(array('s'=> 'summary'), array('s.testid', 's.nodeid', 's.error', 's.timestamp', 'nodename' => 'n.name', 'testname' => 't.name'))
-            ->join(array('t' => 'tests'), 'testid = t.id', array())
-            ->join(array('n' => 'nodes'), 'nodeid = n.id', array())
+            ->from(array(
+                's' => 'summary'
+        ), 
+                array(
+                        's.testid',
+                        's.nodeid',
+                        's.error',
+                        's.timestamp',
+                        'nodename' => 'n.name',
+                        'testname' => 't.name'
+                ))
+            ->join(array(
+                't' => 'tests'
+        ), 'testid = t.id', array())
+            ->join(array(
+                'n' => 'nodes'
+        ), 'nodeid = n.id', array())
             ->where('error != 0')
             ->where("DATE(timestamp) >=  date('now', '-1 day')")
             ->setIntegrityCheck(false);
-            
+        
         $resultSet = $this->getDbTable()->fetchAll($query);
         
-        //echo $query->__toString();
+        // echo $query->__toString();
         return $resultSet;
     }
 
@@ -105,7 +119,7 @@ class Application_Model_SummaryMapper
         ), 
                 array(
                         'testid',
-                        'interval' => "datetime((strftime('%s', timestamp) / 900) * 900, 'unixepoch')",
+                        'interval' => "datetime((strftime('%s', timestamp) / 1800) * 1800, 'unixepoch')",
                         'total' => 'AVG(total)'
                 ))
             ->join(array(
@@ -113,39 +127,19 @@ class Application_Model_SummaryMapper
         ), 's.testid = t.id')
             ->where("DATE(timestamp) >=  date('now', '-1 day')")
             ->where("s.testid = ?", $id)
-            ->order('interval', 'testid')
-            ->group('interval', 'testid')
+            ->order(array(
+                'interval',
+                'testid'
+        ))
+            ->group(array(
+                'interval',
+                'testid'
+        ))
             ->setIntegrityCheck(false);
         
         $resultSet = $this->getDbTable()->fetchAll($query);
         
-        //echo $query->__toString();
-        return $resultSet;
-    }
-    
-    public function dailyPerfAll ($id)
-    {
-        $query = $this->getDbTable()
-        ->select()
-        ->from(array(
-                's' => 'summary'
-        ),
-                array(
-                        'testid',
-                        'interval' => "datetime((strftime('%s', timestamp) / 900) * 900, 'unixepoch')",
-                        'total' => 'AVG(total)'
-                ))
-                ->join(array(
-                        't' => 'tests'
-                ), 's.testid = t.id')
-                ->where("DATE(timestamp) >=  date('now', '-1 day')")
-                ->order('interval', 'testid')
-                ->group('interval', 'testid')
-                ->setIntegrityCheck(false);
-    
-        $resultSet = $this->getDbTable()->fetchAll($query);
-    
-        //echo $query->__toString();
+        // echo $query->__toString();
         return $resultSet;
     }
 }

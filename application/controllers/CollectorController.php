@@ -70,7 +70,7 @@ class CollectorController extends Zend_Controller_Action
                             'hosts' => $xml->Summary->Counter->Hosts,
                             'failedrequests' => $xml->Summary->Counter->FailedRequests,
                             'requests' => $xml->Summary->Counter->Requests,
-                            'error' => $xml->Summary->Error->attributes()->code
+                            'error' => isset($xml->Summary->Error) ? $xml->Summary->Error->attributes()->code : 0
                     ));
             
             $summaryMapper->create($summary);

@@ -84,5 +84,10 @@ class IndexController extends Zend_Controller_Action
         $this->view->chartData = json_encode($dataArray);
         $this->view->keys = json_encode($keysArray);
     }
+    
+    public function nodesAction ()
+    {
+        $this->view->nodes = $this->_nodes->fetchAll();
+    }
 }
 

@@ -125,19 +125,53 @@ class Application_Model_SummaryMapper
         ), 's.testid = t.id')
             ->where("timestamp >=  datetime('now', '-1 day')")
             ->where("s.testid = ?", $id)
-            ->order(array(
-                'interval',
-                'testid'
-        ))
+            ->order(
+                array(
+                        'interval',
+                        'testid'
+                ))
+            ->group(
+                array(
+                        'interval',
+                        'testid'
+                ))
+            ->setIntegrityCheck(false);
+        
+        $resultSet = $this->getDbTable()->fetchAll($query);
+        
+        // echo $query->__toString();
+        return $resultSet;
+    }
+
+    public function nodePerf ($nodeId)
+    {
+        $query = $this->getDbTable()
+            ->select()
+            ->from(array(
+                's' => 'summary'
+        ), 
+                array(
+                        'testid',
+                        'total' => 'AVG(total)',
+                        'nodename' => 'n.name',
+                        'testname' => 't.name'
+                ))
+            ->join(array(
+                't' => 'tests'
+        ), 's.testid = t.id')
+            ->join(array(
+                'n' => 'nodes'
+        ), 's.nodeid = n.id')
+            ->where("timestamp >= datetime('now', '-1 day')")
+            ->where("s.nodeid = ?", $nodeId)
             ->group(array(
-                'interval',
                 'testid'
         ))
             ->setIntegrityCheck(false);
         
         $resultSet = $this->getDbTable()->fetchAll($query);
         
-        // echo $query->__toString();
+        echo $query->__toString();
         return $resultSet;
     }
 }

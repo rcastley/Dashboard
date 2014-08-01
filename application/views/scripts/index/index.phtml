@@ -97,7 +97,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <a href="#">
+                            <a href="/index/nodes">
                                 <div class="panel-footer">
                                     <span class="pull-left">View Details</span>
                                     <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -129,9 +129,9 @@
         </div>
         <!-- /#page-wrapper -->
         <script>
-$(document).ready(function() {
+//$(document).ready(function() {
     // Line Chart
-    Morris.Line({
+var chart = Morris.Line({
         // ID of the element in which to draw the chart.
         element: 'morris-line-chart',
         // Chart data records -- each entry in this array corresponds to a point on
@@ -146,7 +146,10 @@ $(document).ready(function() {
         labels: <?php echo $this->keys?>,
         // Disables line smoothing
         smooth: false,
+        postUnits: ' s',
+        //xLabels: '30min',
         resize: true
     });
-});
+//});
+
         </script>

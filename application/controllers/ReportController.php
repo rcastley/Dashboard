@@ -34,8 +34,7 @@ class ReportController extends Zend_Controller_Action
             
             foreach ($this->timeArray as $k => $v) {
                 $gd = $this->_summary->getDataByTime($test['id'], $v);
-                $dataArray[$test['name']]['perf'][$k] = number_format(
-                        $gd[0]['total']);
+                $dataArray[$test['name']]['perf'][$k] = $gd[0]['total'];
             }
         }
         
@@ -61,7 +60,9 @@ class ReportController extends Zend_Controller_Action
             $name[] = $k;
             if ($v['perf']) {
                 foreach ($v['perf'] as $p) {
-                    if ($p == 0) { $p = '-'; }
+                    if ($p == 0) {
+                        $p = '-';
+                    }
                     $perf[$k][] = $p;
                 }
             }

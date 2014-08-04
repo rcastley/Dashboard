@@ -5,16 +5,16 @@ class Catchpoint_Rag
         if ($perf == '-') {
             $button = '<button type="button" class="btn btn-xs btn-default"> - </button>';
         }
-        if ($perf > 0 && $perf <= 2) {
-            $button = '<button type="button" class="btn btn-xs btn-success">' . $perf . ' s</button>';
+        if ($perf > 0 && $perf <= 2000) {
+            $button = '<button type="button" class="btn btn-xs btn-success">' . number_format($perf) . ' s</button>';
         }
         
-        if ($perf >2 && $perf <=4 ) {
-            $button = '<button type="button" class="btn btn-xs btn-warning">' . $perf . ' s</button>';
+        if ($perf >2000 && $perf <=4000 ) {
+            $button = '<button type="button" class="btn btn-xs btn-warning">' . number_format($perf) . ' s</button>';
         }
         
-        if ($perf >4) {
-            $button = '<button type="button" class="btn btn-xs btn-danger">' . $perf . ' s</button>';
+        if ($perf >4000) {
+            $button = '<button type="button" class="btn btn-xs btn-danger">' . number_format($perf) . ' s</button>';
         }
         return $button;
     }

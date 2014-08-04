@@ -1,0 +1,64 @@
+
+<div id="page-wrapper">
+
+	<div class="container-fluid">
+
+		<!-- Page Heading -->
+		<div class="row">
+			<div class="col-lg-12">
+				<h1 class="page-header">Node Performance</h1>
+				<ol class="breadcrumb">
+					<li><i class="fa fa-dashboard"></i> <a href="/">Dashboard</a></li>
+
+					<li class="active"><i class="fa fa-cloud"></i> RAG Report</li>
+				</ol>
+			</div>
+		</div>
+		<!-- /.row -->
+
+		<div class="row">
+			<div class="col-lg-12">
+
+				<div class="table-responsive">
+					<table class="table table-bordered table-hover">
+						<thead>
+							<tr>
+								<th></th>
+								<th colspan="4">Performance</th>
+								<th colspan="4">Availability</th>
+							</tr>
+							<tr>
+								<th>Test</th>
+								<th>5min</th>
+								<th>15min</th>
+								<th>1hr</th>
+								<th>24hr</th>
+								<th>5min</th>
+								<th>15min</th>
+								<th>1hr</th>
+								<th>24hr</th>
+							</tr>
+						</thead>
+						<tbody>
+						<?php foreach ($this->a as $k => $v) : ?>
+						<tr>
+								<td><?php echo $k ?></td>
+					        <?php foreach ($v as $vv) : ?>
+					        <td><?php echo $vv ?></td>
+					        <?php endforeach;?>
+					    </tr>
+					    <?php endforeach; ?>
+                                </tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+
+	</div>
+	<!-- /.container-fluid -->
+
+</div>
+<tr>
+	<!-- /#page-wrapper -->
+
+</tr>

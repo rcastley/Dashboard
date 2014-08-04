@@ -63,7 +63,7 @@ class Application_Model_SummaryMapper
         return $resultSet;
     }
 
-    public function fetchFailed ()
+    public function fetchFailed ($time)
     {
         $query = $this->getDbTable()
             ->select()
@@ -85,12 +85,44 @@ class Application_Model_SummaryMapper
                 'n' => 'nodes'
         ), 'nodeid = n.id', array())
             ->where('error != 0')
-            ->where("timestamp >=  datetime('now', '-1 day')")
+            ->where("timestamp >=  datetime('now', '" . $time . "')")
             ->setIntegrityCheck(false);
         
         $resultSet = $this->getDbTable()->fetchAll($query);
         
-        // echo $query->__toString();
+        echo $query->__toString();
+        return $resultSet;
+    }
+    
+    public function fetchFailedById ($testid, $time)
+    {
+        $query = $this->getDbTable()
+        ->select()
+        ->from(array(
+                's' => 'summary'
+        ),
+                array(
+                        's.testid',
+                        's.nodeid',
+                        's.error',
+                        's.timestamp',
+                        'nodename' => 'n.name',
+                        'testname' => 't.name'
+                ))
+                ->join(array(
+                        't' => 'tests'
+                ), 'testid = t.id', array())
+                ->join(array(
+                        'n' => 'nodes'
+                ), 'nodeid = n.id', array())
+                ->where('s.testid = ?', $testid)
+                ->where('error != 0')
+                ->where("timestamp >=  datetime('now', '" . $time . "')")
+                ->setIntegrityCheck(false);
+    
+        $resultSet = $this->getDbTable()->fetchAll($query);
+    
+        //echo $query->__toString();
         return $resultSet;
     }
 
@@ -174,4 +206,59 @@ class Application_Model_SummaryMapper
         echo $query->__toString();
         return $resultSet;
     }
+
+    public function getDataByTime ($testid, $time)
+    {
+        $query = $this->getDbTable()
+            ->select()
+            ->from(array(
+                's' => 'summary'
+        ), 
+                array(
+                        'total' => 'AVG(total)',
+                        //'testname' => 't.name'
+                        'count' => 'COUNT(*)'
+                ))
+            ->join(array(
+                't' => 'tests'
+        ), 'testid = t.id', array())
+            ->where('testid = ?', $testid)
+            ->where("timestamp >= datetime('now', '" . $time . "')")
+            ->setIntegrityCheck(false);
+        
+        $resultSet = $this->getDbTable()
+            ->fetchAll($query)
+            ->toArray();
+        
+        //echo $query->__toString();
+        return $resultSet;
+    }
+    
+    public function getAvailability($testid, $time) {
+        $query = $this->getDbTable()
+        ->select()
+        ->from(array(
+                's' => 'summary'
+        ),
+                array(
+                        'total' => 'AVG(total)',
+                        //'testname' => 't.name'
+                        'count' => 'COUNT(*)'
+                ))
+                ->join(array(
+                        't' => 'tests'
+                ), 'testid = t.id', array())
+                ->where('testid = ?', $testid)
+                ->where("timestamp >= datetime('now', '" . $time . "')")
+                ->setIntegrityCheck(false);
+        
+        $resultSet = $this->getDbTable()
+        ->fetchAll($query)
+        ->toArray();
+        
+        // echo $query->__toString() . "\r\n";
+        return $resultSet;
+        
+    }
 }
+

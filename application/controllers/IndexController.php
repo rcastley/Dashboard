@@ -41,16 +41,17 @@ class IndexController extends Zend_Controller_Action
         }
         
         $this->view->count = $this->_tests->fetchAll()->count();
-        $this->view->failed = $this->_summary->fetchFailed()->count();
+        $this->view->failed = $this->_summary->fetchFailed('-24 hours')->count();
         $this->view->uptime = $this->_summary->fetchAll()->count();
         $this->view->nodes = $this->_nodes->fetchAll()->count();
         $this->view->chartData = json_encode($dataArray);
         $this->view->keys = json_encode($keysArray);
+        
     }
 
     public function failedAction ()
     {
-        $this->view->tests = $this->_summary->fetchFailed();
+        $this->view->tests = $this->_summary->fetchFailed('-24 hours');
     }
 
     public function testsAction ()

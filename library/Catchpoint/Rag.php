@@ -6,15 +6,15 @@ class Catchpoint_Rag
             $button = '<button type="button" class="btn btn-xs btn-default"> - </button>';
         }
         if ($perf > 0 && $perf <= 2000) {
-            $button = '<button type="button" class="btn btn-xs btn-success">' . number_format($perf) . ' s</button>';
+            $button = '<button type="button" class="btn btn-xs btn-success">' . number_format($perf) . ' ms</button>';
         }
         
         if ($perf >2000 && $perf <=4000 ) {
-            $button = '<button type="button" class="btn btn-xs btn-warning">' . number_format($perf) . ' s</button>';
+            $button = '<button type="button" class="btn btn-xs btn-warning">' . number_format($perf) . ' ms</button>';
         }
         
         if ($perf >4000) {
-            $button = '<button type="button" class="btn btn-xs btn-danger">' . number_format($perf) . ' s</button>';
+            $button = '<button type="button" class="btn btn-xs btn-danger">' . number_format($perf) . ' ms</button>';
         }
         return $button;
     }
@@ -25,11 +25,11 @@ class Catchpoint_Rag
         }
         
         if ($avail <100 && $avail >= 98 ) {
-            $button = '<button type="button" class="btn btn-xs btn-warning">' . $avail . ' s</button>';
+            $button = '<button type="button" class="btn btn-xs btn-warning">' . $avail . ' %</button>';
         }
         
         if ($avail < 98) {
-            $button = '<button type="button" class="btn btn-xs btn-danger">' . $avail . ' s</button>';
+            $button = '<button type="button" class="btn btn-xs btn-danger">' . $avail . ' %</button>';
         }
         return $button;
         

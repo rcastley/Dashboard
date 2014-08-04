@@ -44,15 +44,14 @@ class ReportController extends Zend_Controller_Action
             foreach ($this->timeArray as $k => $v) {
                 $gd = $this->_summary->fetchFailedById($test['id'], $v)->count();
                 $ga = $this->_summary->getDataByTime($test['id'], $v);
-                //echo $gd;
-                //print_r ($gd);
-                //echo "100 - (gd / number_format($ga[0]['count']) * 100)
                 if ($gd === 0) {
                     $result = 100;
                 } else {
-                    $result = number_format(100 - ($gd / number_format($ga[0]['count']) * 100), 2);
+                    $result = ($gd / $ga[0]['count']) * 100;
+                    $result = 100 - $result;
+                    //$result = $gd . " - " . $ga[0][count] . " - " . ($gd / $ga[0]['count']) * 100;
                 }
-                $availArray[$test['name']][$k] = $result;
+                $availArray[$test['name']][$k] = number_format($result, 2);
             }
         }
         
@@ -65,7 +64,7 @@ class ReportController extends Zend_Controller_Action
         
         $this->view->a = array_merge_recursive($dataArray, $availArray);
         
-        print_r ($a);
+        //print_r ($a);
         
     }
 }

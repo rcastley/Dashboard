@@ -34,7 +34,8 @@ class ReportController extends Zend_Controller_Action
             
             foreach ($this->timeArray as $k => $v) {
                 $gd = $this->_summary->getDataByTime($test['id'], $v);
-                $dataArray[$test['name']][$k] = number_format($gd[0]['total']);
+                $dataArray[$test['name']]['perf'][$k] = number_format(
+                        $gd[0]['total']);
             }
         }
         
@@ -49,23 +50,31 @@ class ReportController extends Zend_Controller_Action
                 } else {
                     $result = ($gd / $ga[0]['count']) * 100;
                     $result = 100 - $result;
-                    //$result = $gd . " - " . $ga[0][count] . " - " . ($gd / $ga[0]['count']) * 100;
                 }
-                $availArray[$test['name']][$k] = number_format($result, 2);
+                $availArray[$test['name']]['avail'][$k] = number_format($result, 
+                        2);
             }
         }
         
-        //print_r($availArray);
+        $merge = array_merge_recursive($dataArray, $availArray);
         
-        //print_r($dataArray);
-        $this->view->data = $dataArray;
+        foreach ($merge as $k => $v) {
+            $name[] = $k;
+            if ($v['perf']) {
+                foreach ($v['perf'] as $p) {
+                    $perf[$k][] = $p;
+                }
+            }
+            if ($v['avail']) {
+                foreach ($v['avail'] as $a) {
+                    $avail[$k][] = $a;
+                }
+            }
+        }
         
-        $this->view->avail = $availArray;
-        
-        $this->view->a = array_merge_recursive($dataArray, $availArray);
-        
-        //print_r ($a);
-        
+        $this->view->name = $name;
+        $this->view->perf = $perf;
+        $this->view->avail = $avail;
     }
 }
 

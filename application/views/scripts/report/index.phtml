@@ -40,12 +40,15 @@
 							</tr>
 						</thead>
 						<tbody>
-						<?php foreach ($this->a as $k => $v) : ?>
+						<?php foreach ($this->name as $k) : ?>
 						<tr>
 								<td><?php echo $k ?></td>
-					        <?php foreach ($v as $vv) : ?>
-					        <td><?php echo $vv ?></td>
+						    <?php foreach ($this->perf[$k] as $p => $v) : ?>
+					        <td><?php echo $v ?> s</td>
 					        <?php endforeach;?>
+					        <?php foreach ($this->avail[$k] as $a => $v) :?>
+					        <td><?php echo $v; ?>%</td>
+					        <?php endforeach; ?>
 					    </tr>
 					    <?php endforeach; ?>
                                 </tbody>

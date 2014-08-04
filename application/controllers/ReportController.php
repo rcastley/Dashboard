@@ -57,11 +57,11 @@ class ReportController extends Zend_Controller_Action
         }
         
         $merge = array_merge_recursive($dataArray, $availArray);
-        
         foreach ($merge as $k => $v) {
             $name[] = $k;
             if ($v['perf']) {
                 foreach ($v['perf'] as $p) {
+                    if ($p == 0) { $p = '-'; }
                     $perf[$k][] = $p;
                 }
             }
@@ -75,6 +75,7 @@ class ReportController extends Zend_Controller_Action
         $this->view->name = $name;
         $this->view->perf = $perf;
         $this->view->avail = $avail;
+        $this->view->color = new Catchpoint_Rag();
     }
 }
 

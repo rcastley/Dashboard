@@ -44,10 +44,10 @@
 						<tr>
 								<td><?php echo $k ?></td>
 						    <?php foreach ($this->perf[$k] as $p => $v) : ?>
-					        <td><?php echo $v ?> s</td>
+					        <td><?php echo $this->color->Perf($v) ?></td>
 					        <?php endforeach;?>
 					        <?php foreach ($this->avail[$k] as $a => $v) :?>
-					        <td><?php echo $v; ?>%</td>
+					        <td><?php echo $this->color->Avail($v); ?></td>
 					        <?php endforeach; ?>
 					    </tr>
 					    <?php endforeach; ?>

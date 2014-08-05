@@ -1,4 +1,6 @@
 /library/Zend/
+/tests
+/bin
 .settings/
 .DS_Store
 .buildpath

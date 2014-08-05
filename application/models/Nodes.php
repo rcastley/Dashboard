@@ -6,6 +6,8 @@ class Application_Model_Nodes
     protected $_id;
 
     protected $_name;
+    
+    protected $_city;
 
     public function __construct (array $options = null)
     {
@@ -64,6 +66,17 @@ class Application_Model_Nodes
     public function getName ()
     {
         return $this->_name;
+    }
+    
+    public function setCity ($ts)
+    {
+        $this->_city = (string) $ts;
+        return $this;
+    }
+    
+    public function getCity ()
+    {
+        return $this->_city;
     }
 }
 

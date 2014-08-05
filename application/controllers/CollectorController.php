@@ -29,10 +29,14 @@ class CollectorController extends Zend_Controller_Action
         
         if ($this->getRequest()->isPost()) {
             
+            if ($xml->NodeName) {
+                list($city) = (split('[-,]', $xml->NodeName));
+            }
             $newNode = new Application_Model_Nodes(
                     array(
                             'id' => $xml->attributes()->nodeId,
-                            'name' => $xml->NodeName
+                            'name' => $xml->NodeName,
+                            'city' => $city
                     ));
             
             $nodeMapper->create($newNode);

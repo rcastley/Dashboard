@@ -29,7 +29,8 @@ class Application_Model_NodesMapper
     {
         $data = array(
                 'id' => $node->getId(),
-                'name' => $node->getName()
+                'name' => $node->getName(),
+                'city' =>$node->getCity()
         );
         
         $check = $this->fetchRow($node->getId());

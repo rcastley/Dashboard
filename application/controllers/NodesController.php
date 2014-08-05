@@ -7,7 +7,6 @@ class NodesController extends Zend_Controller_Action
 
     public function init ()
     {
-        
         $this->_summary = new Application_Model_SummaryMapper();
     }
 

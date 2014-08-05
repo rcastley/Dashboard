@@ -23,13 +23,15 @@
                                 <thead>
                                     <tr>
                                         <th>Node</th>
-                                        <th>Node ID</th>
+                                        <th>City</th>
+                                        <th>ID</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                         <?php foreach($this->nodes as $node) :?>
         <tr>
         <td><a href="/nodes/index/nodeid/<?php echo $node->id ?>"><?php  echo $node->name ?></a></td>
+        <td><?php echo $node->city ?></td>
         <td><?php  echo $node->id ?> </td>
         
         </tr>

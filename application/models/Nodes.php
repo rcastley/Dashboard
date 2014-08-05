@@ -8,6 +8,8 @@ class Application_Model_Nodes
     protected $_name;
     
     protected $_city;
+    
+    protected $_carrier;
 
     public function __construct (array $options = null)
     {
@@ -77,6 +79,17 @@ class Application_Model_Nodes
     public function getCity ()
     {
         return $this->_city;
+    }
+    
+    public function setCarrier ($ts)
+    {
+        $this->_carrier = (string) $ts;
+        return $this;
+    }
+    
+    public function getCarrier ()
+    {
+        return $this->_carrier;
     }
 }
 

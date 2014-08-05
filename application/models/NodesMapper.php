@@ -30,7 +30,8 @@ class Application_Model_NodesMapper
         $data = array(
                 'id' => $node->getId(),
                 'name' => $node->getName(),
-                'city' =>$node->getCity()
+                'city' =>$node->getCity(),
+                'carrier' => $node->getCarrier()
         );
         
         $check = $this->fetchRow($node->getId());

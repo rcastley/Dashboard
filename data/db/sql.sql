@@ -10,6 +10,7 @@ CREATE TABLE "nodes" (
 	"id" integer UNIQUE,
 	"name" varchar(255) NULL,
 	"city" varchar(255) NULL,
+	"carrier" varchar(255) NULL,
 	PRIMARY KEY (id, name)
 );
 

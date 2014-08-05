@@ -33,7 +33,8 @@ class IndexController extends Zend_Controller_Action
             $keysArray[] = $test->name;
             foreach ($data as $d) {
                 $dataArray[] = array(
-                        //'y' => gmdate('Y-m-d H:i:s', strtotime($d->interval)),
+                        // 'y' => gmdate('Y-m-d H:i:s',
+                        // strtotime($d->interval)),
                         'y' => $d->interval,
                         $d->name => number_format($d->total, 0, '.', '')
                 );
@@ -46,7 +47,6 @@ class IndexController extends Zend_Controller_Action
         $this->view->nodes = $this->_nodes->fetchAll()->count();
         $this->view->chartData = json_encode($dataArray);
         $this->view->keys = json_encode($keysArray);
-        
     }
 
     public function failedAction ()
@@ -88,14 +88,18 @@ class IndexController extends Zend_Controller_Action
         $city = $this->_summary->perfByCity($testId);
         
         foreach ($city as $c) {
-            $mapArray[] = array($c->city, number_format($c->total, 0, '.', '') . ' ms');
+            $mapArray[] = array(
+                    $c->city,
+                    $c->city . ' - ' . $c->carrier . ': ' .
+                             number_format($c->total, 0, '.', '') . ' ms'
+            );
         }
         
         $this->view->mapData = json_encode($mapArray);
         
-        print_r (json_encode($mapArray));
+        // print_r (json_encode($mapArray));
     }
-    
+
     public function nodesAction ()
     {
         $this->view->nodes = $this->_nodes->fetchAll();

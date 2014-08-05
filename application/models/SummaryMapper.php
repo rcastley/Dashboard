@@ -90,17 +90,17 @@ class Application_Model_SummaryMapper
         
         $resultSet = $this->getDbTable()->fetchAll($query);
         
-        echo $query->__toString();
+        // echo $query->__toString();
         return $resultSet;
     }
-    
+
     public function fetchFailedById ($testid, $time)
     {
         $query = $this->getDbTable()
-        ->select()
-        ->from(array(
+            ->select()
+            ->from(array(
                 's' => 'summary'
-        ),
+        ), 
                 array(
                         's.testid',
                         's.nodeid',
@@ -109,20 +109,22 @@ class Application_Model_SummaryMapper
                         'nodename' => 'n.name',
                         'testname' => 't.name'
                 ))
-                ->join(array(
+            ->join(
+                array(
                         't' => 'tests'
                 ), 'testid = t.id', array())
-                ->join(array(
+            ->join(
+                array(
                         'n' => 'nodes'
                 ), 'nodeid = n.id', array())
-                ->where('s.testid = ?', $testid)
-                ->where('error != 0')
-                ->where("timestamp >=  datetime('now', '" . $time . "')")
-                ->setIntegrityCheck(false);
-    
+            ->where('s.testid = ?', $testid)
+            ->where('error != 0')
+            ->where("timestamp >=  datetime('now', '" . $time . "')")
+            ->setIntegrityCheck(false);
+        
         $resultSet = $this->getDbTable()->fetchAll($query);
-    
-        //echo $query->__toString();
+        
+        // echo $query->__toString();
         return $resultSet;
     }
 
@@ -203,7 +205,7 @@ class Application_Model_SummaryMapper
         
         $resultSet = $this->getDbTable()->fetchAll($query);
         
-        echo $query->__toString();
+        // echo $query->__toString();
         return $resultSet;
     }
 
@@ -216,7 +218,7 @@ class Application_Model_SummaryMapper
         ), 
                 array(
                         'total' => 'AVG(total)',
-                        //'testname' => 't.name'
+                        // 'testname' => 't.name'
                         'count' => 'COUNT(*)'
                 ))
             ->join(array(
@@ -230,35 +232,69 @@ class Application_Model_SummaryMapper
             ->fetchAll($query)
             ->toArray();
         
-        //echo $query->__toString();
+        // echo $query->__toString();
         return $resultSet;
     }
-    
-    public function getAvailability($testid, $time) {
+
+    public function getAvailability ($testid, $time)
+    {
         $query = $this->getDbTable()
-        ->select()
-        ->from(array(
+            ->select()
+            ->from(array(
                 's' => 'summary'
-        ),
+        ), 
                 array(
                         'total' => 'AVG(total)',
-                        //'testname' => 't.name'
+                        // 'testname' => 't.name'
                         'count' => 'COUNT(*)'
                 ))
-                ->join(array(
+            ->join(
+                array(
                         't' => 'tests'
                 ), 'testid = t.id', array())
-                ->where('testid = ?', $testid)
-                ->where("timestamp >= datetime('now', '" . $time . "')")
-                ->setIntegrityCheck(false);
+            ->where('testid = ?', $testid)
+            ->where("timestamp >= datetime('now', '" . $time . "')")
+            ->setIntegrityCheck(false);
         
         $resultSet = $this->getDbTable()
-        ->fetchAll($query)
-        ->toArray();
+            ->fetchAll($query)
+            ->toArray();
         
         // echo $query->__toString() . "\r\n";
         return $resultSet;
+    }
+
+    public function perfByCity ($testid)
+    {
+        $query = $this->getDbTable()
+            ->select()
+            ->from(array(
+                's' => 'summary'
+        ), 
+                array(
+                        'testid',
+                        'total' => 'AVG(total)',
+                        //'city' => 'n.city'
+                ))
+            ->join(
+                array(
+                        't' => 'tests'
+                ), 's.testid = t.id')
+            ->join(
+                array(
+                        'n' => 'nodes'
+                ), 's.nodeid = n.id')
+            ->where("timestamp >= datetime('now', '-1 day')")
+            ->where("s.testid = ?", $testid)
+            ->group(array(
+                'n.id'
+        ))
+            ->setIntegrityCheck(false);
         
+        $resultSet = $this->getDbTable()->fetchAll($query);
+        
+        echo $query->__toString();
+        return $resultSet;
     }
 }
 

@@ -84,6 +84,16 @@ class IndexController extends Zend_Controller_Action
         $this->view->testName = $testName->name;
         $this->view->chartData = json_encode($dataArray);
         $this->view->keys = json_encode($keysArray);
+        
+        $city = $this->_summary->perfByCity($testId);
+        
+        foreach ($city as $c) {
+            $mapArray[] = array($c->city, number_format($c->total, 0, '.', '') . ' ms');
+        }
+        
+        $this->view->mapData = json_encode($mapArray);
+        
+        print_r (json_encode($mapArray));
     }
     
     public function nodesAction ()

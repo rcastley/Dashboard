@@ -8,10 +8,12 @@ class ReportController extends Zend_Controller_Action
     protected $_tests;
 
     public $timeArray = array(
-            '5' => '-5 minutes',
-            '15' => '-15 minutes',
-            '1' => '-1 hour',
-            '24' => '-24 hours'
+            '5m' => '-5 minutes',
+            '15m' => '-15 minutes',
+            '1h' => '-1 hour',
+            '24h' => '-24 hours',
+            '7d' => '-7 days',
+            '1m' => '-1 month'
     );
 
     public function init ()

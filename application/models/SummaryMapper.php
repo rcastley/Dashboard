@@ -232,7 +232,7 @@ class Application_Model_SummaryMapper
             ->fetchAll($query)
             ->toArray();
         
-        // echo $query->__toString();
+        echo $query->__toString();
         return $resultSet;
     }
 

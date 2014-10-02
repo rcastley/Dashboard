@@ -48,7 +48,7 @@ class IndexController extends Zend_Controller_Action
         $this->view->chartData = json_encode($dataArray);
         $this->view->keys = json_encode($keysArray);
         
-        print_r($this->view->uptime->stotal);
+        print_r($this->view->uptime);
     }
 
     public function failedAction ()

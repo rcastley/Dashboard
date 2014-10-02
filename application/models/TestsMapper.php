@@ -46,7 +46,7 @@ class Application_Model_TestsMapper
     public function fetchAll ()
     {
         $resultSet = $this->getDbTable()->fetchAll();
-        echo $resultSet->__toString();
+        print_r($resultSet);
         return $resultSet;
     }
     

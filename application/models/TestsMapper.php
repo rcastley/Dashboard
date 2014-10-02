@@ -46,7 +46,6 @@ class Application_Model_TestsMapper
     public function fetchAll ()
     {
         $resultSet = $this->getDbTable()->fetchAll();
-        print_r($resultSet);
         return $resultSet;
     }
     
@@ -56,6 +55,8 @@ class Application_Model_TestsMapper
             ->select()
             ->where('id = ?', $id);
         $resultSet = $this->getDbTable()->fetchRow($query);
+        
+        echo $query->__toString();
         return $resultSet;  
     }
 }

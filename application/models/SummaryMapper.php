@@ -60,6 +60,8 @@ class Application_Model_SummaryMapper
             ->select()
             ->where('testid = ?', $testId);
         $resultSet = $this->getDbTable()->fetchRow($query);
+        
+        echo $query->__toString();
         return $resultSet;
     }
 
@@ -90,7 +92,7 @@ class Application_Model_SummaryMapper
         
         $resultSet = $this->getDbTable()->fetchAll($query);
         
-        // echo $query->__toString();
+        echo $query->__toString();
         return $resultSet;
     }
 
@@ -124,7 +126,7 @@ class Application_Model_SummaryMapper
         
         $resultSet = $this->getDbTable()->fetchAll($query);
         
-        // echo $query->__toString();
+        echo $query->__toString();
         return $resultSet;
     }
 
@@ -173,7 +175,7 @@ class Application_Model_SummaryMapper
         
         $resultSet = $this->getDbTable()->fetchAll($query);
         
-        // echo $query->__toString();
+        echo $query->__toString();
         return $resultSet;
     }
 
@@ -205,12 +207,13 @@ class Application_Model_SummaryMapper
         
         $resultSet = $this->getDbTable()->fetchAll($query);
         
-        // echo $query->__toString();
+        echo $query->__toString();
         return $resultSet;
     }
 
     public function getDataByTime ($testid, $time)
     {
+        $testids = array('73975', '72942');
         $query = $this->getDbTable()
             ->select()
             ->from(array(
@@ -224,7 +227,7 @@ class Application_Model_SummaryMapper
             ->join(array(
                 't' => 'tests'
         ), 'testid = t.id', array())
-            ->where('testid = ?', $testid)
+            ->where('testid IN (?)', $testids)
             ->where("timestamp >= datetime('now', '" . $time . "')")
             ->setIntegrityCheck(false);
         
@@ -260,7 +263,7 @@ class Application_Model_SummaryMapper
             ->fetchAll($query)
             ->toArray();
         
-        // echo $query->__toString() . "\r\n";
+        echo $query->__toString() . "\r\n";
         return $resultSet;
     }
 

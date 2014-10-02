@@ -41,6 +41,7 @@ class IndexController extends Zend_Controller_Action
             }
         }
         
+        print_r($this->_summary->fetchAllCount());
         $this->view->count = $this->_tests->fetchAll()->count();
         $this->view->failed = $this->_summary->fetchFailed('-24 hours')->count();
         $this->view->uptime = $this->_summary->fetchAllCount();

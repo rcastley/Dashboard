@@ -155,7 +155,7 @@ class Application_Model_SummaryMapper
         ), array('COUNT(*) AS stotal'))
         ->where("timestamp >=  datetime('now', '-1 day')");
         
-        $resultSet = $this->getDbTable()->fetchOne($query);
+        $resultSet = $this->getDbTable()->fetchAll($query);
     
         return $resultSet;
     }

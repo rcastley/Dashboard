@@ -92,7 +92,7 @@ class Application_Model_SummaryMapper
         
         $resultSet = $this->getDbTable()->fetchAll($query);
         
-        echo $query->__toString();
+        echo $query->__toString() . EOL;
         return $resultSet;
     }
 
@@ -126,7 +126,7 @@ class Application_Model_SummaryMapper
         
         $resultSet = $this->getDbTable()->fetchAll($query);
         
-        echo $query->__toString();
+        echo $query->__toString() . EOL;
         return $resultSet;
     }
 
@@ -138,6 +138,8 @@ class Application_Model_SummaryMapper
                 's' => 'summary'
         ))
             ->where("timestamp >=  datetime('now', '-1 day')");
+        
+        echo $query->__toString() . EOL;
         
         $resultSet = $this->getDbTable()->fetchAll($query);
         
@@ -175,7 +177,7 @@ class Application_Model_SummaryMapper
         
         $resultSet = $this->getDbTable()->fetchAll($query);
         
-        echo $query->__toString();
+        echo $query->__toString() . EOL;
         return $resultSet;
     }
 
@@ -207,7 +209,7 @@ class Application_Model_SummaryMapper
         
         $resultSet = $this->getDbTable()->fetchAll($query);
         
-        echo $query->__toString();
+        echo $query->__toString() . EOL;
         return $resultSet;
     }
 
@@ -235,7 +237,7 @@ class Application_Model_SummaryMapper
             ->fetchAll($query)
             ->toArray();
         
-        echo $query->__toString();
+        echo $query->__toString() . EOL;
         return $resultSet;
     }
 
@@ -263,7 +265,7 @@ class Application_Model_SummaryMapper
             ->fetchAll($query)
             ->toArray();
         
-        echo $query->__toString() . "\r\n";
+        echo $query->__toString() . EOL;
         return $resultSet;
     }
 
@@ -296,7 +298,7 @@ class Application_Model_SummaryMapper
         
         $resultSet = $this->getDbTable()->fetchAll($query);
         
-        echo $query->__toString();
+        echo $query->__toString() . EOL;
         return $resultSet;
     }
 }

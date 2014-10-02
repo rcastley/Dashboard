@@ -50,7 +50,7 @@ class Application_Model_NodesMapper
             ->where('id = ?', $id);
         $resultSet = $this->getDbTable()->fetchRow($query);
         
-        echo $query->__toString();
+        echo $query->__toString() . EOL;
         return $resultSet;
     }
     

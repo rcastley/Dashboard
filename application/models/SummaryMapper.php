@@ -149,7 +149,7 @@ class Application_Model_SummaryMapper
     public function fetchAllCount ()
     {
         $query = $this->getDbTable()
-        ->select('id, timestamp')
+        ->select()
         ->from(array(
                 's' => 'summary'
         ), array('COUNT(*) AS stotal'))

@@ -43,7 +43,7 @@ class IndexController extends Zend_Controller_Action
         
         $this->view->count = $this->_tests->fetchAll()->count();
         $this->view->failed = $this->_summary->fetchFailed('-24 hours')->count();
-        $this->view->uptime = $this->_summary->fetchAll()->count();
+        $this->view->uptime = $this->_summary->fetchAllCount();
         $this->view->nodes = $this->_nodes->fetchAll()->count();
         $this->view->chartData = json_encode($dataArray);
         $this->view->keys = json_encode($keysArray);
@@ -81,8 +81,17 @@ class IndexController extends Zend_Controller_Action
             );
         }
         
+        
+        foreach ($data as $d) {
+            $dateArray[] =
+            $d->interval;
+            //number_format($d->total, 0, '.', '');
+            //);
+        }
+        
         $this->view->testName = $testName->name;
         $this->view->chartData = json_encode($dataArray);
+        $this->view->label = json_encode($dateArray);
         $this->view->keys = json_encode($keysArray);
         
         $city = $this->_summary->perfByCity($testId);

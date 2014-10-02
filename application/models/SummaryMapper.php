@@ -145,6 +145,22 @@ class Application_Model_SummaryMapper
         
         return $resultSet;
     }
+    
+    public function fetchAllCount ()
+    {
+        $query = $this->getDbTable()
+        ->select('id')
+        ->from(array(
+                's' => 'summary'
+        ), array('COUNT(*) AS stotal'))
+        ->where("timestamp >=  datetime('now', '-1 day')");
+    
+        echo $query->__toString() . PHP_EOL;
+    
+        $resultSet = $this->getDbTable()->fetchAll($query);
+    
+        return $resultSet;
+    }
 
     public function dailyPerf ($id)
     {

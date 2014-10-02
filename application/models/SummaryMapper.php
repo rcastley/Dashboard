@@ -92,7 +92,7 @@ class Application_Model_SummaryMapper
         
         $resultSet = $this->getDbTable()->fetchAll($query);
         
-        echo $query->__toString() . EOL;
+        echo $query->__toString() . PHP_EOL;
         return $resultSet;
     }
 
@@ -126,7 +126,7 @@ class Application_Model_SummaryMapper
         
         $resultSet = $this->getDbTable()->fetchAll($query);
         
-        echo $query->__toString() . EOL;
+        echo $query->__toString() . PHP_EOL;
         return $resultSet;
     }
 
@@ -139,7 +139,7 @@ class Application_Model_SummaryMapper
         ))
             ->where("timestamp >=  datetime('now', '-1 day')");
         
-        echo $query->__toString() . EOL;
+        echo $query->__toString() . PHP_EOL;
         
         $resultSet = $this->getDbTable()->fetchAll($query);
         
@@ -177,7 +177,7 @@ class Application_Model_SummaryMapper
         
         $resultSet = $this->getDbTable()->fetchAll($query);
         
-        echo $query->__toString() . EOL;
+        echo $query->__toString() . PHP_EOL;
         return $resultSet;
     }
 
@@ -209,7 +209,7 @@ class Application_Model_SummaryMapper
         
         $resultSet = $this->getDbTable()->fetchAll($query);
         
-        echo $query->__toString() . EOL;
+        echo $query->__toString() . PHP_EOL;
         return $resultSet;
     }
 
@@ -237,7 +237,7 @@ class Application_Model_SummaryMapper
             ->fetchAll($query)
             ->toArray();
         
-        echo $query->__toString() . EOL;
+        echo $query->__toString() . PHP_EOL;
         return $resultSet;
     }
 
@@ -265,7 +265,7 @@ class Application_Model_SummaryMapper
             ->fetchAll($query)
             ->toArray();
         
-        echo $query->__toString() . EOL;
+        echo $query->__toString() . PHP_EOL;
         return $resultSet;
     }
 
@@ -298,7 +298,7 @@ class Application_Model_SummaryMapper
         
         $resultSet = $this->getDbTable()->fetchAll($query);
         
-        echo $query->__toString() . EOL;
+        echo $query->__toString() . PHP_EOL;
         return $resultSet;
     }
 }

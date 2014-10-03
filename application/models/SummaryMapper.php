@@ -260,7 +260,7 @@ class Application_Model_SummaryMapper
             ->fetchAll($query)
             ->toArray();
         
-        echo $query->__toString() . PHP_EOL;
+        //echo $query->__toString() . PHP_EOL;
         
         return $resultSet;
     }

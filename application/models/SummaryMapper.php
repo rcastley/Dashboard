@@ -61,7 +61,8 @@ class Application_Model_SummaryMapper
             ->where('testid = ?', $testId);
         $resultSet = $this->getDbTable()->fetchRow($query);
         
-        echo $query->__toString();
+        //echo $query->__toString();
+        
         return $resultSet;
     }
 
@@ -92,7 +93,8 @@ class Application_Model_SummaryMapper
         
         $resultSet = $this->getDbTable()->fetchAll($query);
         
-        echo $query->__toString() . PHP_EOL;
+        //echo $query->__toString() . PHP_EOL;
+        
         return $resultSet;
     }
 
@@ -127,6 +129,7 @@ class Application_Model_SummaryMapper
         $resultSet = $this->getDbTable()->fetchAll($query);
         
         echo $query->__toString() . PHP_EOL;
+        
         return $resultSet;
     }
 
@@ -139,24 +142,25 @@ class Application_Model_SummaryMapper
         ))
             ->where("timestamp >=  datetime('now', '-1 day')");
         
-        echo $query->__toString() . PHP_EOL;
+        //echo $query->__toString() . PHP_EOL;
         
         $resultSet = $this->getDbTable()->fetchAll($query);
         
         return $resultSet;
     }
-    
-    public function fetchAllCount ()
+
+    public function count ()
     {
         $query = $this->getDbTable()
-        ->select()
-        ->from(array(
-                's' => 'summary'
-        ), array('COUNT(*) AS stotal'))
-        ->where("timestamp >=  datetime('now', '-1 day')");
+            ->select()
+            ->from('summary', 
+                array(
+                        'COUNT(*) AS stotal'
+                ))
+            ->where("timestamp >=  datetime('now', '-1 day')");
+                
+        $resultSet = $this->getDbTable()->fetchAll($query)->toArray();
         
-        $resultSet = $this->getDbTable()->fetchAll($query);
-    
         return $resultSet;
     }
 
@@ -191,7 +195,8 @@ class Application_Model_SummaryMapper
         
         $resultSet = $this->getDbTable()->fetchAll($query);
         
-        echo $query->__toString() . PHP_EOL;
+        //echo $query->__toString() . PHP_EOL;
+        
         return $resultSet;
     }
 
@@ -223,13 +228,17 @@ class Application_Model_SummaryMapper
         
         $resultSet = $this->getDbTable()->fetchAll($query);
         
-        echo $query->__toString() . PHP_EOL;
+        //echo $query->__toString() . PHP_EOL;
+        
         return $resultSet;
     }
 
     public function getDataByTime ($testid, $time)
     {
-        $testids = array('73975', '72942');
+        //$testids = array(
+        //        '73975',
+        //        '72942'
+        //);
         $query = $this->getDbTable()
             ->select()
             ->from(array(
@@ -243,7 +252,7 @@ class Application_Model_SummaryMapper
             ->join(array(
                 't' => 'tests'
         ), 'testid = t.id', array())
-            ->where('testid IN (?)', $testids)
+            ->where('testid IN (?)', $testid)
             ->where("timestamp >= datetime('now', '" . $time . "')")
             ->setIntegrityCheck(false);
         
@@ -252,6 +261,7 @@ class Application_Model_SummaryMapper
             ->toArray();
         
         echo $query->__toString() . PHP_EOL;
+        
         return $resultSet;
     }
 
@@ -279,7 +289,8 @@ class Application_Model_SummaryMapper
             ->fetchAll($query)
             ->toArray();
         
-        echo $query->__toString() . PHP_EOL;
+        //echo $query->__toString() . PHP_EOL;
+        
         return $resultSet;
     }
 
@@ -292,9 +303,9 @@ class Application_Model_SummaryMapper
         ), 
                 array(
                         'testid',
-                        'total' => 'AVG(total)',
-                        //'city' => 'n.city'
-                ))
+                        'total' => 'AVG(total)'
+                // 'city' => 'n.city'
+                                ))
             ->join(
                 array(
                         't' => 'tests'
@@ -312,7 +323,8 @@ class Application_Model_SummaryMapper
         
         $resultSet = $this->getDbTable()->fetchAll($query);
         
-        echo $query->__toString() . PHP_EOL;
+        //echo $query->__toString() . PHP_EOL;
+        
         return $resultSet;
     }
 }

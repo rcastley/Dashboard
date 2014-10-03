@@ -30,7 +30,7 @@ class Application_Model_NodesMapper
         $data = array(
                 'id' => $node->getId(),
                 'name' => $node->getName(),
-                'city' =>$node->getCity(),
+                'city' => $node->getCity(),
                 'carrier' => $node->getCarrier()
         );
         
@@ -39,7 +39,10 @@ class Application_Model_NodesMapper
         if (null === ($id = $check)) {
             $this->getDbTable()->insert($data);
         } else {
-            $this->getDbTable()->update($data, array("id = ?" => $check->id));
+            $this->getDbTable()->update($data, 
+                    array(
+                            "id = ?" => $check->id
+                    ));
         }
     }
 
@@ -50,13 +53,26 @@ class Application_Model_NodesMapper
             ->where('id = ?', $id);
         $resultSet = $this->getDbTable()->fetchRow($query);
         
-        echo $query->__toString() . EOL;
         return $resultSet;
     }
-    
+
     public function fetchAll ()
     {
         $resultSet = $this->getDbTable()->fetchAll();
+        return $resultSet;
+    }
+
+    public function count ()
+    {
+        $query = $this->getDbTable()
+            ->select()
+            ->from('nodes', 
+                array(
+                        'COUNT(*) AS tnodes'
+                ));
+        
+        $resultSet = $this->getDbTable()->fetchAll($query)->toArray();
+        
         return $resultSet;
     }
 }

@@ -29,27 +29,30 @@ class ReportController extends Zend_Controller_Action
         
         $testName = array();
         
-        $dataArray = array();
+        $perfArray = array();
+        
+        $availArray = array();
         
         foreach ($activeTests as $test) {
             $testName[] = $test['name'];
             
             foreach ($this->timeArray as $k => $v) {
-                $gd = $this->_summary->getDataByTime($test['id'], $v);
-                $dataArray[$test['name']]['perf'][$k] = $gd[0]['total'];
-            }
-        }
+                $perfData = $this->_summary->getDataByTime($test['id'], $v);
+                $perfArray[$test['name']]['perf'][$k] = $perfData[0]['total'];
+          //  }
+        //}
         
-        foreach ($activeTests as $test) {
-            $testName[] = $test['name'];
+        //foreach ($activeTests as $test) {
+        //    $testName[] = $test['name'];
             
-            foreach ($this->timeArray as $k => $v) {
+           // foreach ($this->timeArray as $k => $v) {
                 $gd = $this->_summary->fetchFailedById($test['id'], $v)->count();
-                $ga = $this->_summary->getDataByTime($test['id'], $v);
+                //$ga = $this->_summary->getDataByTime($test['id'], $v);
+                
                 if ($gd === 0) {
                     $result = 100;
                 } else {
-                    $result = ($gd / $ga[0]['count']) * 100;
+                    $result = ($gd / $perfData[0]['count']) * 100;
                     $result = 100 - $result;
                 }
                 $availArray[$test['name']]['avail'][$k] = number_format($result, 
@@ -57,7 +60,7 @@ class ReportController extends Zend_Controller_Action
             }
         }
         
-        $merge = array_merge_recursive($dataArray, $availArray);
+        $merge = array_merge_recursive($perfArray, $availArray);
         foreach ($merge as $k => $v) {
             $name[] = $k;
             if ($v['perf']) {

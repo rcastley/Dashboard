@@ -70,7 +70,7 @@
                                         <i class="fa fa-database fa-5x"></i>
                                     </div>
                                     <div class="col-xs-9 text-right">
-                                        <div class="huge"><?php echo $this->uptime[0]->stotal ?></div>
+                                        <div class="huge"><?php echo $this->uptime[0]['stotal'] ?></div>
                                         <div>Tests Performed!</div>
                                     </div>
                                 </div>
@@ -92,7 +92,7 @@
                                         <i class="fa fa-cloud fa-5x"></i>
                                     </div>
                                     <div class="col-xs-9 text-right">
-                                        <div class="huge"><?php echo $this->nodes ?></div>
+                                        <div class="huge"><?php echo $this->nodes[0]['tnodes'] ?></div>
                                         <div>Nodes Used!</div>
                                     </div>
                                 </div>
@@ -145,7 +145,7 @@ var chart = Morris.Line({
         // chart.
         labels: <?php echo $this->keys?>,
         // Disables line smoothing
-        smooth: true,
+        smooth: false,
         postUnits: ' s',
         xLabels: '60min',
         resize: true,

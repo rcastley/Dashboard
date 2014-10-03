@@ -43,11 +43,10 @@ class IndexController extends Zend_Controller_Action
         
         $this->view->count = $this->_tests->fetchAll()->count();
         $this->view->failed = $this->_summary->fetchFailed('-24 hours')->count();
-        $this->view->uptime = $this->_summary->fetchAllCount();
-        $this->view->nodes = $this->_nodes->fetchAll()->count();
+        $this->view->uptime = $this->_summary->count();
+        $this->view->nodes = $this->_nodes->count();
         $this->view->chartData = json_encode($dataArray);
         $this->view->keys = json_encode($keysArray);
-        
     }
 
     public function failedAction ()
@@ -82,12 +81,10 @@ class IndexController extends Zend_Controller_Action
             );
         }
         
-        
         foreach ($data as $d) {
-            $dateArray[] =
-            $d->interval;
-            //number_format($d->total, 0, '.', '');
-            //);
+            $dateArray[] = $d->interval;
+            // number_format($d->total, 0, '.', '');
+            // );
         }
         
         $this->view->testName = $testName->name;

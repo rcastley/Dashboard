@@ -128,7 +128,7 @@ class Application_Model_SummaryMapper
         
         $resultSet = $this->getDbTable()->fetchAll($query);
         
-        echo $query->__toString() . PHP_EOL;
+        //echo $query->__toString() . PHP_EOL;
         
         return $resultSet;
     }

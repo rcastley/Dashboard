@@ -195,7 +195,7 @@ class Application_Model_SummaryMapper
         
         $resultSet = $this->getDbTable()->fetchAll($query);
         
-        //echo $query->__toString() . PHP_EOL;
+        echo $query->__toString() . PHP_EOL;
         
         return $resultSet;
     }
@@ -228,17 +228,13 @@ class Application_Model_SummaryMapper
         
         $resultSet = $this->getDbTable()->fetchAll($query);
         
-        //echo $query->__toString() . PHP_EOL;
+        echo $query->__toString() . PHP_EOL;
         
         return $resultSet;
     }
 
     public function getDataByTime ($testid, $time)
     {
-        //$testids = array(
-        //        '73975',
-        //        '72942'
-        //);
         $query = $this->getDbTable()
             ->select()
             ->from(array(
@@ -260,7 +256,7 @@ class Application_Model_SummaryMapper
             ->fetchAll($query)
             ->toArray();
         
-        //echo $query->__toString() . PHP_EOL;
+        echo $query->__toString() . PHP_EOL;
         
         return $resultSet;
     }
@@ -289,7 +285,7 @@ class Application_Model_SummaryMapper
             ->fetchAll($query)
             ->toArray();
         
-        //echo $query->__toString() . PHP_EOL;
+        echo $query->__toString() . PHP_EOL;
         
         return $resultSet;
     }
@@ -323,7 +319,7 @@ class Application_Model_SummaryMapper
         
         $resultSet = $this->getDbTable()->fetchAll($query);
         
-        //echo $query->__toString() . PHP_EOL;
+        echo $query->__toString() . PHP_EOL;
         
         return $resultSet;
     }

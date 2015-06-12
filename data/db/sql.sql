@@ -39,3 +39,7 @@ CREATE TABLE "summary" (
 	"requests" integer NULL,
 	"error" integer NULL
 );
+
+CREATE INDEX nindex ON nodes("id");
+CREATE INDEX tindex ON tests("id");
+CREATE INDEX sindex ON summary("id", "testid", "timestamp");

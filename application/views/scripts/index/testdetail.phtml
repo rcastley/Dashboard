@@ -137,7 +137,7 @@ var myLineChart = new Chart(ctx).Line(data, options);
     function drawMap() {
       var data = google.visualization.arrayToDataTable(<?php echo $this->mapData ?>);
 
-    var options = { showTip: true };
+    var options = { mapType: 'terrain', showTip: true };
 
     var map = new google.visualization.Map(document.getElementById('chart_div'));
 

@@ -46,6 +46,9 @@ class Application_Model_TestsMapper
     public function fetchAll ()
     {
         $resultSet = $this->getDbTable()->fetchAll();
+
+        echo $query->__toString() . PHP_EOL;
+        
         return $resultSet;
     }
     

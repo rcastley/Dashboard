@@ -32,7 +32,7 @@ class IndexController extends Zend_Controller_Action
             
             $keysArray[] = $test->name;
             foreach ($data as $d) {
-                $dataArray[] = array(
+                $dataArray[$test->name] = array(
                         // 'y' => gmdate('Y-m-d H:i:s',
                         // strtotime($d->interval)),
                         //'y' => $d->interval,

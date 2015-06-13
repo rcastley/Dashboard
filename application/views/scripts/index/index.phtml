@@ -137,24 +137,24 @@
         <!-- /#page-wrapper -->
         <script>
         // Line Chart
-        var chart = Morris.Line({
+        //var chart = Morris.Line({
             // ID of the element in which to draw the chart.
-            element: 'morris-line-chart',
+            //element: 'morris-line-chart',
             // Chart data records -- each entry in this array corresponds to a point on the chart.
-            data: <?php echo $this->chartData ?>,
+            //data: <?php echo $this->chartData ?>,
             // The name of the data record attribute that contains x-visitss.
-            xkey: 'y',
+            //xkey: 'y',
             // A list of names of data record attributes that contain y-visitss.
-            ykeys: <?php echo $this->keys?>,
+            //ykeys: <?php echo $this->keys?>,
             // Labels for the ykeys -- will be displayed when you hover over the chart.
-            labels: <?php echo $this->keys?>,
+            //labels: <?php echo $this->keys?>,
             // Disables line smoothing
-            smooth: false,
-            postUnits: ' s',
-            xLabels: '60min',
-            resize: true,
-            hideHover: 'auto'
-        });
+            //smooth: false,
+            //postUnits: ' s',
+            //xLabels: '60min',
+            //resize: true,
+            //hideHover: 'auto'
+        //});
 
         $(function () {
     $('#container').highcharts({

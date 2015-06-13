@@ -35,8 +35,9 @@ class IndexController extends Zend_Controller_Action
                 $dataArray[] = array(
                         // 'y' => gmdate('Y-m-d H:i:s',
                         // strtotime($d->interval)),
-                        'y' => $d->interval,
-                        $d->name => number_format($d->total, 0, '.', '')
+                        //'y' => $d->interval,
+                        //$d->name => number_format($d->total, 0, '.', '')
+                    $d->interval, number_format($d->total, 0, '.', '')
                 );
             }
         }

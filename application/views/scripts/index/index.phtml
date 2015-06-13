@@ -164,9 +164,6 @@
         title: {
             text: 'Snow depth at Vikjafjellet, Norway'
         },
-        subtitle: {
-            text: 'Irregular time data in Highcharts JS'
-        },
         xAxis: {
             type: 'datetime',
             dateTimeLabelFormats: { // don't display the dummy year
@@ -179,7 +176,7 @@
         },
         yAxis: {
             title: {
-                text: 'Total Time (s)'
+                text: 'Total Time (ms)'
             },
             min: 0
         },
@@ -202,13 +199,7 @@
             // of 1970/71 in order to be compared on the same x axis. Note
             // that in JavaScript, months start at 0 for January, 1 for February etc.
             data: [
-[1434191400000,396.0],
-[1434209602000,687.0],
-[1434209692000,483.0],
-[1434209744000,638.0],
-[1434209839000,492.0],
-[1434209928000,768.0],
-[1434209995000,534.0]
+<?php echo $this->chartData ?>
             ]
         }]
     });

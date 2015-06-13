@@ -173,7 +173,8 @@ class Application_Model_SummaryMapper
         ), 
                 array(
                         'testid',
-                        'interval' => "datetime((strftime('%s', timestamp) / 1800) * 1800, 'unixepoch')",
+                        //'interval' => "datetime((strftime('%s', timestamp) / 1800) * 1800, 'unixepoch')",
+                        'interval' => "(((strftime('%s', timestamp) / 1800) * 1800) *1000)",
                         'total' => 'AVG(total)'
                 ))
             ->join(array(

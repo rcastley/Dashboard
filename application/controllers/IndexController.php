@@ -46,7 +46,7 @@ class IndexController extends Zend_Controller_Action
         $this->view->failed = $this->_summary->fetchFailed('-24 hours')->count();
         $this->view->uptime = $this->_summary->count();
         $this->view->nodes = $this->_nodes->count();
-        $this->view->chartData = json_encode($dataArray);
+        $this->view->chartData = json_encode($dataArray, JSON_NUMERIC_CHECK);
         $this->view->keys = json_encode($keysArray);
     }
 

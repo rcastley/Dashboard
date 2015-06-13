@@ -117,6 +117,19 @@
                         </div>
                     </div>
                 </div>
+
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title"><i class="fa fa-bar-chart-o fa-fw"></i> Test Performance for last 24hrs</h3>
+                            </div>
+                            <div class="panel-body">
+                                <div id="container"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <!-- /.row -->
             </div>
             <!-- /.container-fluid -->
@@ -142,4 +155,62 @@
             resize: true,
             hideHover: 'auto'
         });
+
+        $(function () {
+    $('#container').highcharts({
+        chart: {
+            type: 'line'
+        },
+        title: {
+            text: 'Snow depth at Vikjafjellet, Norway'
+        },
+        subtitle: {
+            text: 'Irregular time data in Highcharts JS'
+        },
+        xAxis: {
+            type: 'datetime',
+            dateTimeLabelFormats: { // don't display the dummy year
+                month: '%e %b',
+                year: '%b'
+            },
+            title: {
+                text: 'Date'
+            }
+        },
+        yAxis: {
+            title: {
+                text: 'Total Time (s)'
+            },
+            min: 0
+        },
+        tooltip: {
+            headerFormat: '<b>{series.name}</b><br>',
+            pointFormat: '{point.x:%e %b}: {point.y}ms'
+        },
+
+        plotOptions: {
+            spline: {
+                marker: {
+                    enabled: true
+                }
+            }
+        },
+
+        series: [{
+            name: 'SCC Test Page',
+            // Define the data points. All series have a dummy year
+            // of 1970/71 in order to be compared on the same x axis. Note
+            // that in JavaScript, months start at 0 for January, 1 for February etc.
+            data: [
+[1434191400000,396.0],
+[1434209602000,687.0],
+[1434209692000,483.0],
+[1434209744000,638.0],
+[1434209839000,492.0],
+[1434209928000,768.0],
+[1434209995000,534.0]
+            ]
+        }]
+    });
+});
         </script>

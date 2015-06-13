@@ -31,9 +31,9 @@ class IndexController extends Zend_Controller_Action
             $data = $this->_summary->dailyPerf($test->id);
             
             //$keysArray[] = $test->name;
-            $dataArray[] = array('name' => $test->name);
+            $dataArray[] = array('name' => $test->name, 'data');
             foreach ($data as $d) {
-                $dataArray['data'] = array(
+                $dataArray[] = array(
                         // 'y' => gmdate('Y-m-d H:i:s',
                         // strtotime($d->interval)),
                         //'y' => $d->interval,

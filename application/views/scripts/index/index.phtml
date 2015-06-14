@@ -112,19 +112,6 @@
                                 <h3 class="panel-title"><i class="fa fa-bar-chart-o fa-fw"></i> Test Performance for last 24hrs</h3>
                             </div>
                             <div class="panel-body">
-                                <div id="morris-line-chart"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                <h3 class="panel-title"><i class="fa fa-bar-chart-o fa-fw"></i> Test Performance for last 24hrs</h3>
-                            </div>
-                            <div class="panel-body">
                                 <div id="container"></div>
                             </div>
                         </div>
@@ -135,43 +122,24 @@
             <!-- /.container-fluid -->
         </div>
         <!-- /#page-wrapper -->
-        <script>
-        // Line Chart
-        //var chart = Morris.Line({
-            // ID of the element in which to draw the chart.
-            //element: 'morris-line-chart',
-            // Chart data records -- each entry in this array corresponds to a point on the chart.
-            //data: <?php echo $this->chartData ?>,
-            // The name of the data record attribute that contains x-visitss.
-            //xkey: 'y',
-            // A list of names of data record attributes that contain y-visitss.
-            //ykeys: <?php echo $this->keys?>,
-            // Labels for the ykeys -- will be displayed when you hover over the chart.
-            //labels: <?php echo $this->keys?>,
-            // Disables line smoothing
-            //smooth: false,
-            //postUnits: ' s',
-            //xLabels: '60min',
-            //resize: true,
-            //hideHover: 'auto'
-        //});
-
+<script>
         $(function () {
     $('#container').highcharts({
         chart: {
             type: 'line'
         },
-        title: {
-            text: 'Snow depth at Vikjafjellet, Norway'
-        },
+	title: {
+	    text: null
+	},
         xAxis: {
             type: 'datetime',
             dateTimeLabelFormats: { // don't display the dummy year
+		minute: '%H:%M',
                 month: '%e %b',
                 year: '%b'
             },
             title: {
-                text: 'Date'
+                text: 'Date/Time'
             }
         },
         yAxis: {
@@ -182,7 +150,7 @@
         },
         tooltip: {
             headerFormat: '<b>{series.name}</b><br>',
-            pointFormat: '{point.x:%e %b}: {point.y}ms'
+            pointFormat: '{point.x:%e %b %H:%Mhrs}: {point.y}ms'
         },
 
         plotOptions: {
@@ -193,15 +161,8 @@
             }
         },
 
-        series: [{
-            name: 'SCC Test Page',
-            // Define the data points. All series have a dummy year
-            // of 1970/71 in order to be compared on the same x axis. Note
-            // that in JavaScript, months start at 0 for January, 1 for February etc.
-            data: 
-<?php echo $this->chartData ?>
-            
-        }]
+	series:
+	<?php echo $this->chartData ?>
     });
 });
         </script>

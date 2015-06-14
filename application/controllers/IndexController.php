@@ -25,15 +25,16 @@ class IndexController extends Zend_Controller_Action
         $keysArray = array();
         
         $dataArray = array();
+
+	$sdataArray = array();
         
         foreach ($tests as $test) {
             
             $data = $this->_summary->dailyPerf($test->id);
-            
+            $sdataArray = null; 
             //$keysArray[] = $test->name;
-            $dataArray[] = array('name' => $test->name);
             foreach ($data as $d) {
-                $dataArray[] = array(
+                $sdataArray[] = array( 
                         // 'y' => gmdate('Y-m-d H:i:s',
                         // strtotime($d->interval)),
                         //'y' => $d->interval,
@@ -41,9 +42,9 @@ class IndexController extends Zend_Controller_Action
                         $d->interval, number_format($d->total, 0, '.', '')
                 );
             }
+            $dataArray[] = array('name' => $test->name, 'data' => $sdataArray);
         }
         
-        print_r($dataArray);
         $this->view->count = $this->_tests->fetchAll()->count();
         $this->view->failed = $this->_summary->fetchFailed('-24 hours')->count();
         $this->view->uptime = $this->_summary->count();

@@ -107,14 +107,16 @@
                 <!-- /.row -->
                 <div class="row">
                     <div class="col-lg-12">
-                        <div class="panel panel-default">
+                        <!--<div class="panel panel-default">-->
+                            <!--
                             <div class="panel-heading">
                                 <h3 class="panel-title"><i class="fa fa-bar-chart-o fa-fw"></i> Test Performance for last 24hrs</h3>
                             </div>
-                            <div class="panel-body">
+                            -->
+                            <!--<div class="panel-body">-->
                                 <div id="container"></div>
-                            </div>
-                        </div>
+                            <!--</div>-->
+                        <!--</div>-->
                     </div>
                 </div>
                 <!-- /.row -->
@@ -123,7 +125,7 @@
         </div>
         <!-- /#page-wrapper -->
 <script>
-        $(function () {
+$(function () {
     $('#container').highcharts({
         chart: {
             type: 'line'
@@ -143,14 +145,18 @@
             }
         },
         yAxis: {
-            title: {
-                text: 'Total Time (ms)'
+            labels: {
+                format: '{value} ms'
             },
+            title: {
+                text: 'Total Time'
+            },
+
             min: 0
         },
         tooltip: {
             headerFormat: '<b>{series.name}</b><br>',
-            pointFormat: '{point.x:%e %b %H:%Mhrs}: {point.y}ms'
+            pointFormat: '{point.x:%e %b %H:%Mhrs}: <b>{point.y}ms</b>'
         },
 
         plotOptions: {

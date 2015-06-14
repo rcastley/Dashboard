@@ -174,7 +174,7 @@ class Application_Model_SummaryMapper
                 array(
                         'testid',
                         //'interval' => "datetime((strftime('%s', timestamp) / 1800) * 1800, 'unixepoch')",
-                        'interval' => "(((strftime('%s', timestamp) / 1800) * 1800) *1000)",
+                        'interval' => "(strftime('%s', timestamp) / 1800 * 1800 * 1000)",
                         'total' => 'AVG(total)'
                 ))
             ->join(array(
@@ -196,7 +196,7 @@ class Application_Model_SummaryMapper
         
         $resultSet = $this->getDbTable()->fetchAll($query);
         
-        echo $query->__toString() . PHP_EOL;
+        //echo $query->__toString() . PHP_EOL;
         
         return $resultSet;
     }
@@ -229,7 +229,7 @@ class Application_Model_SummaryMapper
         
         $resultSet = $this->getDbTable()->fetchAll($query);
         
-        echo $query->__toString() . PHP_EOL;
+        //echo $query->__toString() . PHP_EOL;
         
         return $resultSet;
     }
@@ -257,7 +257,7 @@ class Application_Model_SummaryMapper
             ->fetchAll($query)
             ->toArray();
         
-        echo $query->__toString() . PHP_EOL;
+        //echo $query->__toString() . PHP_EOL;
         
         return $resultSet;
     }

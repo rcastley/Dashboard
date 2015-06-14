@@ -53,7 +53,7 @@ class Application_Model_NodesMapper
             ->where('id = ?', $id);
         $resultSet = $this->getDbTable()->fetchRow($query);
         
-        echo $query->__toString() . PHP_EOL;
+        //echo $query->__toString() . PHP_EOL;
         
         return $resultSet;
     }
@@ -73,7 +73,7 @@ class Application_Model_NodesMapper
                         'COUNT(id) AS tnodes'
                 ));
         
-        echo $query->__toString() . PHP_EOL;
+        //echo $query->__toString() . PHP_EOL;
 
         $resultSet = $this->getDbTable()->fetchAll($query)->toArray();
         

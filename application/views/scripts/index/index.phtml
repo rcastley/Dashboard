@@ -128,15 +128,15 @@
 $(function () {
     $('#container').highcharts({
         chart: {
-            type: 'line'
+            type: 'spline'
         },
-	title: {
-	    text: null
-	},
+        title: {
+	       text: null
+        },
         xAxis: {
             type: 'datetime',
             dateTimeLabelFormats: { // don't display the dummy year
-		minute: '%H:%M',
+                minute: '%H:%M',
                 month: '%e %b',
                 year: '%b'
             },
@@ -162,13 +162,12 @@ $(function () {
         plotOptions: {
             spline: {
                 marker: {
-                    enabled: true
+                    enabled: true,
+                    symbol: 'circle'
                 }
             }
         },
-
-	series:
-	<?php echo $this->chartData ?>
+	series: <?php echo $this->chartData ?>
     });
 });
-        </script>
+</script>

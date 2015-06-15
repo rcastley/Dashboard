@@ -57,7 +57,7 @@ class Application_Model_TestsMapper
             ->where('id = ?', $id);
         $resultSet = $this->getDbTable()->fetchRow($query);
         
-        echo $query->__toString() . PHP_EOL;
+        //echo $query->__toString() . PHP_EOL;
         
         return $resultSet;  
     }

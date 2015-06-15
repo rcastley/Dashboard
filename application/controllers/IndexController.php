@@ -21,36 +21,31 @@ class IndexController extends Zend_Controller_Action
     public function indexAction ()
     {
         $tests = $this->_tests->fetchAll();
-        
-        $keysArray = array();
-        
-        $dataArray = array();
+                
+        $testArray = array();
 
-	$sdataArray = array();
+        $dataArray = array();
         
         foreach ($tests as $test) {
             
             $data = $this->_summary->dailyPerf($test->id);
-            $sdataArray = null; 
-            //$keysArray[] = $test->name;
+            
+            $dataArray = null; 
+            
             foreach ($data as $d) {
-                $sdataArray[] = array( 
-                        // 'y' => gmdate('Y-m-d H:i:s',
-                        // strtotime($d->interval)),
-                        //'y' => $d->interval,
-                        //$d->name => number_format($d->total, 0, '.', '')
-                        $d->interval, number_format($d->total, 0, '.', '')
+                $dataArray[] = array( 
+                    $d->interval, number_format($d->total, 0, '.', '')
                 );
             }
-            $dataArray[] = array('name' => $test->name, 'data' => $sdataArray);
+
+            $testArray[] = array('name' => $test->name, 'data' => $dataArray);
         }
         
         $this->view->count = $this->_tests->fetchAll()->count();
         $this->view->failed = $this->_summary->fetchFailed('-24 hours')->count();
         $this->view->uptime = $this->_summary->count();
         $this->view->nodes = $this->_nodes->count();
-        $this->view->chartData = json_encode($dataArray, JSON_NUMERIC_CHECK);
-        $this->view->keys = json_encode($keysArray);
+        $this->view->chartData = json_encode($testArray, JSON_NUMERIC_CHECK);
     }
 
     public function failedAction ()
@@ -74,30 +69,32 @@ class IndexController extends Zend_Controller_Action
         
         $testName = $this->_tests->fetchRow($testId);
         
-        $data = $this->_summary->dailyPerf($testId);
+        $data = $this->_summary->dailyPerf($testId, '-7 day');
         
-        $keysArray[] = $testName->name;
+        $testArray = array();
+
+        $dataArray = array();
         
-        foreach ($data as $d) {
-            $dataArray[] = array(
-                    'y' => $d->interval,
-                    $d->name => number_format($d->total, 0, '.', '')
-            );
-        }
+            
+            foreach ($data as $d) {
+                $dataArray[] = array( 
+                    $d->interval, number_format($d->total, 0, '.', '')
+                );
+            }
+
+        $testArray[] = array('name' => $testName->name, 'data' => $dataArray);
         
-        foreach ($data as $d) {
-            $dateArray[] = $d->interval;
-            // number_format($d->total, 0, '.', '');
-            // );
-        }
         
         $this->view->testName = $testName->name;
         $this->view->chartData = json_encode($dataArray);
         $this->view->label = json_encode($dateArray);
         $this->view->keys = json_encode($keysArray);
+
+        $this->view->chartData = json_encode($testArray, JSON_NUMERIC_CHECK);
         
-        $city = $this->_summary->perfByCity($testId);
-        
+        $city = $this->_summary->perfByCity($testId, '-7 day');
+
+        /*
         foreach ($city as $c) {
             $mapArray[] = array(
                     $c->city,
@@ -105,10 +102,19 @@ class IndexController extends Zend_Controller_Action
                              number_format($c->total, 0, '.', '') . ' ms'
             );
         }
-        
-        $this->view->mapData = json_encode($mapArray);
-        
-        // print_r (json_encode($mapArray));
+        */
+        foreach ($city as $c) {
+
+            $mapArray = null; 
+            $mapArray[] = array(
+
+                             number_format($c->total, 0, '.', '')
+            );
+            $cityArray[] = array('name' => $c->city . ' - ' . $c->carrier, 'data' => $mapArray);
+        }
+
+
+        $this->view->mapData = json_encode($cityArray, JSON_NUMERIC_CHECK);        
     }
 
     public function nodesAction ()

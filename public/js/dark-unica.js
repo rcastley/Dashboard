@@ -5,7 +5,7 @@
 
 // Load the fonts
 Highcharts.createElement('link', {
-	href: '//fonts.googleapis.com/css?family=Unica+One',
+	href: '//fonts.googleapis.com/css?family=Open+Sans',
 	rel: 'stylesheet',
 	type: 'text/css'
 }, null, document.getElementsByTagName('head')[0]);
@@ -16,7 +16,7 @@ Highcharts.theme = {
 	chart: {
 		backgroundColor: null,
 		style: {
-			//fontFamily: "'Unica One', sans-serif"
+			fontFamily: "'Open Sans', sans-serif"
 		},
 		plotBorderColor: '#606063'
 	},

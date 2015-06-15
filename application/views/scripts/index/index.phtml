@@ -1,9 +1,12 @@
-        <div id="page-wrapper">
+        <!--<div id="page-wrapper">-->
             <div class="container-fluid">
                 <!-- Page Heading -->
+                
                 <div class="row">
+                    <div class="page-header">
                     <div class="col-lg-12">
-                        <h1 class="page-header">
+                        
+                        <h1>
                             Dashboard <small>24hr Summary</small>
                         </h1>
                         <ol class="breadcrumb">
@@ -12,11 +15,12 @@
                             </li>
                         </ol>
                     </div>
+                    </div>
                 </div>
                 <!-- /.row -->
                 <div class="row">
                     <div class="col-lg-3 col-md-6">
-                        <div class="panel panel-green">
+                        <div class="panel">
                             <div class="panel-heading">
                                 <div class="row">
                                     <div class="col-xs-3">
@@ -38,7 +42,7 @@
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-6">
-                        <div class="panel panel-red">
+                        <div class="panel">
                             <div class="panel-heading">
                                 <div class="row">
                                     <div class="col-xs-3">
@@ -60,7 +64,7 @@
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-6">
-                        <div class="panel panel-yellow">
+                        <div class="panel">
                             <div class="panel-heading">
                                 <div class="row">
                                     <div class="col-xs-3">
@@ -82,7 +86,7 @@
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-6">
-                        <div class="panel panel-primary">
+                        <div class="panel">
                             <div class="panel-heading">
                                 <div class="row">
                                     <div class="col-xs-3">
@@ -122,7 +126,7 @@
                 <!-- /.row -->
             </div>
             <!-- /.container-fluid -->
-        </div>
+        <!--</div>-->
         <!-- /#page-wrapper -->
 <script>
 $(function () {
@@ -151,7 +155,14 @@ $(function () {
             title: {
                 text: 'Total Time'
             },
-
+            plotLines:[{
+                value: 2000,
+                color: '#ff0000',
+                width: 3,
+                label: {
+                    text: ''
+                }
+            }],
             min: 0
         },
         tooltip: {

@@ -164,7 +164,7 @@ class Application_Model_SummaryMapper
         return $resultSet;
     }
 
-    public function dailyPerf ($id)
+    public function dailyPerf ($id, $timeFrame = '-1 day')
     {
         $query = $this->getDbTable()
             ->select()
@@ -180,7 +180,7 @@ class Application_Model_SummaryMapper
             ->join(array(
                 't' => 'tests'
         ), 's.testid = t.id')
-            ->where("timestamp >=  datetime('now', '-1 day')")
+            ->where("timestamp >=  datetime('now', '" . $timeFrame . "')")
             ->where("s.testid = ?", $id)
             ->order(
                 array(
@@ -286,12 +286,12 @@ class Application_Model_SummaryMapper
             ->fetchAll($query)
             ->toArray();
         
-        echo $query->__toString() . PHP_EOL;
+        //echo $query->__toString() . PHP_EOL;
         
         return $resultSet;
     }
 
-    public function perfByCity ($testid)
+    public function perfByCity ($testid, $timeFrame = '-1 day')
     {
         $query = $this->getDbTable()
             ->select()
@@ -311,7 +311,7 @@ class Application_Model_SummaryMapper
                 array(
                         'n' => 'nodes'
                 ), 's.nodeid = n.id')
-            ->where("timestamp >= datetime('now', '-1 day')")
+            ->where("timestamp >= datetime('now', '". $timeFrame . "')")
             ->where("s.testid = ?", $testid)
             ->group(array(
                 'n.id'
@@ -320,7 +320,7 @@ class Application_Model_SummaryMapper
         
         $resultSet = $this->getDbTable()->fetchAll($query);
         
-        echo $query->__toString() . PHP_EOL;
+        //echo $query->__toString() . PHP_EOL;
         
         return $resultSet;
     }

@@ -60,7 +60,30 @@ class IndexController extends Zend_Controller_Action
         
         $this->view->monitor = $getMonitor;
         $this->view->type = $getType;
-        $this->view->tests = $this->_tests->fetchAll();
+        
+        $tests = $this->_tests->fetchAll();
+        
+        $this->view->tests = $tests;
+
+        foreach ($tests as $test) {
+            
+            $data = $this->_summary->dailyPerf($test->id);
+            
+            $dataArray = null; 
+            
+            foreach ($data as $d) {
+                $dataArray[] =  
+                    number_format($d->total, 0, '.', '')
+                ;
+            }
+
+            $testArray[] = array('name' => $test->name, 'type' => $test->type, 'monitor' => $test->monitor, 'id' => $test->id, 'data' => $dataArray);
+        }
+
+        $this->view->chartData = $testArray;
+
+        print_r ($testArray);
+
     }
 
     public function testdetailAction ()

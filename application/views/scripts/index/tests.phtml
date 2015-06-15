@@ -35,7 +35,7 @@
                                    
                                         <?php foreach($this->chartData as $test) :?>
         <tr>
-        <td><a href="/index/testdetail/id/<?php echo $test->id ?>"><?php  echo $test['name'] ?></a></td>
+        <th><a href="/index/testdetail/id/<?php echo $test->id ?>"><?php  echo $test['name'] ?></a></th>
          <?php
             $string = rtrim(implode(', ', $test['data']), ',');
             echo "<td data-sparkline=\"" . $string . "\"></td>";
@@ -187,8 +187,8 @@ $(function () {
                     pointStart: 1
                 }],
                 tooltip: {
-                    headerFormat: '<span style="font-size: 10px">' + $td.parent().find('th').html() + ', Q{point.x}:</span><br/>',
-                    pointFormat: '<b>{point.y}.000</b> USD'
+                    headerFormat: '<span style="font-size: 10px">' + $td.parent().find('th').html() + '</span><br/>',
+                    pointFormat: '<b>{point.y}</b> ms'
                 },
                 chart: chart
             });

@@ -37,7 +37,6 @@
         <tr>
         <td><a href="/index/testdetail/id/<?php echo $test->id ?>"><?php  echo $test['name'] ?></a></td>
          <?php
-            //print_r($test->data);       
             $string = rtrim(implode(', ', $test['data']), ',');
             echo "<td data-sparkline=\"" . $string . "\"></td>";
         

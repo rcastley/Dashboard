@@ -82,8 +82,6 @@ class IndexController extends Zend_Controller_Action
 
         $this->view->chartData = $testArray;
 
-        print_r ($testArray);
-
     }
 
     public function testdetailAction ()

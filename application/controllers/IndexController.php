@@ -93,6 +93,10 @@ class IndexController extends Zend_Controller_Action
         $testName = $this->_tests->fetchRow($testId);
         
         $data = $this->_summary->dailyPerf($testId, '-7 day');
+
+        $this->view->lastWeek = $this->_summary->comparePerf($testId, '-14 day', '-7 day');
+
+        $this->view->thisWeek = $this->_summary->comparePerf($testId, '-7 day', '0 day');
         
         $testArray = array();
 

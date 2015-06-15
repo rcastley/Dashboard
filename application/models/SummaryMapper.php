@@ -201,6 +201,50 @@ class Application_Model_SummaryMapper
         return $resultSet;
     }
 
+
+public function comparePerf ($id, $from = '-14 day', $to = '-7 day')
+    {
+        $query = $this->getDbTable()
+            ->select()
+            ->from(array(
+                's' => 'summary'
+        ), 
+                array(
+                        'testid',
+                        //'interval' => "datetime((strftime('%s', timestamp) / 1800) * 1800, 'unixepoch')",
+                        //'interval' => "(strftime('%s', timestamp) / 1800 * 1800 * 1000)",
+                        'interval' => "timestamp",
+                        'total' => 'AVG(total)',
+                        'doc' => 'documentcomplete',
+                        'render' => 'renderstart',
+                        'wait' => 'wait'
+                ))
+            ->join(array(
+                't' => 'tests'
+        ), 's.testid = t.id')
+            ->where("timestamp <= datetime('now', '" . $to . "')")
+            ->where("timestamp >= datetime('now', '". $from . "')")
+            ->where("s.testid = ?", $id)
+            /*
+            ->order(
+                array(
+                        'interval',
+                        'testid'
+                ))
+            ->group(
+                array(
+                        'interval',
+                        'testid'
+                ))
+            */
+            ->setIntegrityCheck(false);
+        
+        $resultSet = $this->getDbTable()->fetchAll($query)->toArray();
+        
+        //echo $query->__toString() . PHP_EOL;
+        
+        return $resultSet;
+    }
     public function nodePerf ($nodeId)
     {
         $query = $this->getDbTable()

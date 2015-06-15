@@ -1,3 +1,7 @@
 .huge {
     font-size: 40px;
 }
+
+.table.table-hover.center td, .table.table-hover.center th {
+	text-align: center;
+}

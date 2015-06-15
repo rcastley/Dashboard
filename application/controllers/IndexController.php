@@ -82,6 +82,8 @@ class IndexController extends Zend_Controller_Action
 
         $this->view->chartData = $testArray;
 
+        //print_r ($testArray);
+
     }
 
     public function testdetailAction ()
@@ -107,7 +109,7 @@ class IndexController extends Zend_Controller_Action
         
         
         $this->view->testName = $testName->name;
-        $this->view->chartData = json_encode($dataArray);
+        //$this->view->chartData = json_encode($dataArray);
         //$this->view->label = json_encode($dateArray);
         //$this->view->keys = json_encode($keysArray);
 

@@ -35,7 +35,7 @@
                                    
                                         <?php foreach($this->chartData as $test) :?>
         <tr>
-        <th><a href="/index/testdetail/id/<?php echo $test->id ?>"><?php  echo $test['name'] ?></a></th>
+        <th><a href="/index/testdetail/id/<?php echo $test['id'] ?>"><?php  echo $test['name'] ?></a></th>
          <?php
             $string = rtrim(implode(', ', $test['data']), ',');
             echo "<td data-sparkline=\"" . $string . "\"></td>";

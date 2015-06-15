@@ -241,7 +241,7 @@ public function comparePerf ($id, $from = '-14 day', $to = '-7 day')
         
         $resultSet = $this->getDbTable()->fetchAll($query)->toArray();
         
-        //echo $query->__toString() . PHP_EOL;
+        echo $query->__toString() . PHP_EOL;
         
         return $resultSet;
     }

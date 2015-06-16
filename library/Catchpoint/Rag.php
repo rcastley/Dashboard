@@ -9,7 +9,7 @@ class Catchpoint_Rag
             $button = '<button type="button" class="btn btn-xs btn-success">' . number_format($perf) . ' ms</button>';
         }
         
-        if ($perf >2000 && $perf <=4000 ) {
+        if ($perf >2000 && $perf <=5000 ) {
             $button = '<button type="button" class="btn btn-xs btn-warning">' . number_format($perf) . ' ms</button>';
         }
         
@@ -24,11 +24,11 @@ class Catchpoint_Rag
             $button = '<button type="button" class="btn btn-xs btn-success">' . $avail . '%</button>';
         }
         
-        if ($avail <100 && $avail >= 98 ) {
+        if ($avail <100 && $avail >= 99 ) {
             $button = '<button type="button" class="btn btn-xs btn-warning">' . $avail . ' %</button>';
         }
         
-        if ($avail < 98) {
+        if ($avail < 99) {
             $button = '<button type="button" class="btn btn-xs btn-danger">' . $avail . ' %</button>';
         }
         return $button;

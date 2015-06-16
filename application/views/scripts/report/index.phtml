@@ -1,52 +1,52 @@
+<ol class="breadcrumb">
+	<li>
+		<i class="fa fa-dashboard"></i> <a href="/">Dashboard</a>
+	</li>
+	<li class="active">
+		<i class="fa fa-table"></i> RAG Report
+	</li>
+</ol>
 
-				<ol class="breadcrumb">
-					<li><i class="fa fa-dashboard"></i> <a href="/">Dashboard</a></li>
-
-					<li class="active"><i class="fa fa-table"></i> RAG Report</li>
-				</ol>
-		<!-- /.row -->
-
-		<div class="row">
-			<div class="col-lg-12">
-
-				<div class="table-responsive">
-					<table class="table table-striped table-hover">
-						<thead>
-							<tr>
-								<th></th>
-								<th colspan="6">Performance</th>
-								<th colspan="6">Availability</th>
-							</tr>
-							<tr>
-								<th>Test</th>
-								<th>5min</th>
-								<th>15min</th>
-								<th>1hr</th>
-								<th>24hr</th>
-								<th>1w</th>
-								<th>1m</th>
-								<th>5min</th>
-								<th>15min</th>
-								<th>1hr</th>
-								<th>24hr</th>
-								<th>1w</th>
-								<th>1m</th>
-							</tr>
-						</thead>
-						<tbody>
-						<?php foreach ($this->name as $k) : ?>
-						<tr>
-								<td><?php echo $k ?></td>
-						    <?php foreach ($this->perf[$k] as $p => $v) : ?>
-					        <td><?php echo $this->color->Perf($v) ?></td>
-					        <?php endforeach;?>
-					        <?php foreach ($this->avail[$k] as $a => $v) :?>
-					        <td><?php echo $this->color->Avail($v); ?></td>
-					        <?php endforeach; ?>
-					    </tr>
-					    <?php endforeach; ?>
-                                </tbody>
-					</table>
-				</div>
-			</div>
+<div class="row">
+	<div class="col-lg-12">
+		<div class="table-responsive">
+			<table class="table table-striped table-hover">
+				<thead>
+					<tr>
+						<th></th>
+						<th colspan="6">Performance</th>
+						<th colspan="6">Availability</th>
+					</tr>
+					<tr>
+						<th>Test</th>
+						<th>5min</th>
+						<th>15min</th>
+						<th>1hr</th>
+						<th>24hr</th>
+						<th>1w</th>
+						<th>1m</th>
+						<th>5min</th>
+						<th>15min</th>
+						<th>1hr</th>
+						<th>24hr</th>
+						<th>1w</th>
+						<th>1m</th>
+					</tr>
+				</thead>
+				<tbody>
+					<?php foreach ($this->name as $k) : ?>
+					<tr>
+						<td><?php echo $k ?></td>
+						<?php foreach ($this->perf[$k] as $p => $v) : ?>
+						<td><?php echo $this->color->Perf($v) ?></td>
+						<?php endforeach;?>
+						<?php foreach ($this->avail[$k] as $a => $v) :?>
+						<td><?php echo $this->color->Avail($v); ?></td>
+						<?php endforeach; ?>
+					</tr>
+					<?php endforeach; ?>
+				</tbody>
+			</table>
 		</div>
+	</div>
+</div>

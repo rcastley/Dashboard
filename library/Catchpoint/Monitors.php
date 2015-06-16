@@ -5,7 +5,7 @@ class Catchpoint_Monitors
 	public function Monitors ($monitorId)
 	{
 		$monitors = array(
-			0 => 'IE Browser',
+			0 => 'IE',
 			2 => 'Object',
 			3 => 'Emulated',
 			8 => 'Ping (ICMP)',
@@ -17,7 +17,7 @@ class Catchpoint_Monitors
 			14 => 'Tracert (UDP)',
 			15 => 'Port (TCP)',
 			16 => 'FTP',
-			18 => 'Chrome Browser',
+			18 => 'Chrome',
 			19 => 'Playback',
 			20 => 'Playback Mobile',
 			21 => 'SMTP', 

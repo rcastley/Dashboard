@@ -5,3 +5,7 @@
 .table.table-hover.center td, .table.table-hover.center th {
 	text-align: center;
 }
+
+body {
+	padding-top: 60px;
+}

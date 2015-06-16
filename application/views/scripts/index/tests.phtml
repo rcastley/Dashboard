@@ -1,63 +1,42 @@
-
-<div id="page-wrapper">
-
-	<div class="container-fluid">
-
-		<!-- Page Heading -->
-		<div class="row">
-            <div class="page-header">
-			<div class="col-lg-12">
-				<h1>
-					Active Tests
-				</h1>
-				<ol class="breadcrumb">
-					<li><i class="fa fa-dashboard"></i> <a href="/">Dashboard</a></li>
-					<li class="active"><i class="fa fa-folder"></i> Tests</li>
-				</ol>
-			</div>
-		</div>
-    </div>
-		<!-- /.row -->
-		<div class="row">
-		                    <div class="col-lg-12">
-                        <div class="table-responsive">
-                            <table class="table table-bordered table-hover">
-                                <thead>
-                                    <tr>
-                                        <th>Name</th>
-                                        <th>Performance</th>
-                                        <th>Test ID</th>
-                                        <th>Type</th>
-                                        <th>Monitor</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                   
-                                        <?php foreach($this->chartData as $test) :?>
-        <tr>
-        <th><a href="/index/testdetail/id/<?php echo $test['id'] ?>"><?php  echo $test['name'] ?></a></th>
-         <?php
-            $string = rtrim(implode(', ', $test['data']), ',');
-            echo "<td data-sparkline=\"" . $string . "\"></td>";
-        
-        ?>
-        <td><?php  echo $test['id'] ?> </td>
-                <td><?php  echo $this->type->Types($test['type']) ?> </td>
-                <td><?php  echo $this->monitor->Monitors($test['monitor']) ?> </td>
-                
-        
-        </tr>
-        <?php endforeach;?>
-
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
+<ol class="breadcrumb">
+    <li>
+        <i class="fa fa-dashboard"></i> <a href="/">Dashboard</a>
+    </li>
+	<li class="active">
+        <i class="fa fa-folder"></i> Tests
+    </li>
+</ol>
+<div class="row">
+    <div class="col-lg-12">
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Performance</th>
+                        <th>Test ID</th>
+                        <th>Type</th>
+                        <th>Monitor</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <?php foreach($this->chartData as $test) :?>
+                    <tr>
+                        <th><a href="/index/testdetail/id/<?php echo $test['id'] ?>"><?php  echo $test['name'] ?></a></th>
+                        <?php
+                        $string = rtrim(implode(', ', $test['data']), ',');
+                        echo "<td data-sparkline=\"" . $string . "\"></td>";        
+                        ?>
+                        <td><?php  echo $test['id'] ?> </td>
+                        <td><?php  echo $this->type->Types($test['type']) ?> </td>
+                        <td><?php  echo $this->monitor->Monitors($test['monitor']) ?> </td>
+                    </tr>
+                <?php endforeach;?>
+                </tbody>
+            </table>
         </div>
-	</div>
-	<!-- /#page-wrapper -->
+    </div>
 </div>
-
 <script>
 $(function () {
     /**

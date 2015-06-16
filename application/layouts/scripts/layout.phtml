@@ -33,6 +33,7 @@
     <!-- Navigation -->
     <nav class="navbar navbar-default navbar-fixed-top">
     <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="container-fluid">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
                 <span class="sr-only">Toggle navigation</span>
@@ -41,15 +42,17 @@
                 <span class="icon-bar"></span>
             </button>
             <a href="/"><img class="img-responsive" src="/images/cp-logo.png" alt="Home"></a>
+           
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
                 <li><a href="/"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a></li>
-                <li><a href="/index/tests"><i class="fa fa-fw fa-bar-chart-o"></i> Active Tests</a></li>
-                <li><a href="/index/failed"><i class="fa fa-fw fa-warning"></i> Failed Tests</a></li>
+                <li><a href="/index/tests"><i class="fa fa-fw fa-bar-chart-o"></i> Tests</a></li>
+                <li><a href="/index/failed"><i class="fa fa-fw fa-warning"></i> Failures</a></li>
                 <li><a href="/index/nodes"><i class="fa fa-fw fa-cloud"></i> Nodes</a></li>
                 <li><a href="/report"><i class="fa fa-fw fa-table"></i> RAG Report</a></li>                         
             </ul>
+        </div>
         </div>
     </nav>
     <div class="container-fluid">

@@ -1,55 +1,37 @@
+<ol class="breadcrumb">
+    <li>
+        <i class="fa fa-dashboard"></i> <a href="/">Dashboard</a>
+    </li>
+    <li class="active">
+        <i class="fa fa-warning"></i> Failed Tests
+    </li>
+</ol>
 
-<div id="page-wrapper">
-
-	<div class="container-fluid">
-
-		<!-- Page Heading -->
-        
-		<div class="row">
-            <div class="page-header">
-			<div class="col-lg-12">
-				<h1>
-					Failed Tests
-				</h1>
-				<ol class="breadcrumb">
-					<li><i class="fa fa-dashboard"></i> <a href="/">Dashboard</a></li>
-					<li class="active"><i class="fa fa-warning"></i> Failed Tests</li>
-				</ol>
-			</div>
-		</div>
-    </div>
-		<!-- /.row -->
-		<div class="row">
-		                    <div class="col-lg-12">
- 
-                        <div class="table-responsive">
-                            <table class="table table-bordered table-hover">
-                                <thead>
-                                    <tr>
-                                        <th>Date/Time</th>
-                                        <th>Name</th>
-                                        <th>ID</th>
-                                        <th>Node ID</th>
-                                        <th>Error Code</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                        <?php foreach($this->tests as $test) :?>
-        <tr>
-        <td><?php  echo $test->timestamp ?> </td>
-        <td><?php echo $test->testname ?> </td>
-        <td><?php  echo $test->testid ?> </td>
-                <td><?php  echo $test->nodename ?> </td>
-                <td><?php  echo $test->error ?> </td>
-        
-        </tr>
-        <?php endforeach;?>
-
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
+<div class="row">
+    <div class="col-lg-12">
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Date/Time</th>
+                        <th>Name</th>
+                        <th>ID</th>
+                        <th>Node ID</th>
+                        <th>Error Code</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <?php foreach($this->tests as $test) :?>
+                    <tr>
+                        <td><?php  echo $test->timestamp ?> </td>
+                        <td><?php echo $test->testname ?> </td>
+                        <td><?php  echo $test->testid ?> </td>
+                        <td><?php  echo $test->nodename ?> </td>
+                        <td><?php  echo $test->error ?> </td>
+                    </tr>
+                    <?php endforeach;?>
+                </tbody>
+            </table>
         </div>
-	</div>
-	<!-- /#page-wrapper -->
+    </div>
 </div>

@@ -1,184 +1,159 @@
-        <!--<div id="page-wrapper">-->
-            <div class="container-fluid">
-                <!-- Page Heading -->
-                
-                <div class="row">
-                    <div class="page-header">
-                    <div class="col-lg-12">
-                        
-                        <h1>
-                            Dashboard <small>24hr Summary</small>
-                        </h1>
-                        <ol class="breadcrumb">
-                            <li class="active">
-                                <i class="fa fa-dashboard"></i> Dashboard
-                            </li>
-                        </ol>
-                    </div>
-                    </div>
-                </div>
-                <!-- /.row -->
-                <div class="row">
-                    <div class="col-lg-3 col-md-6">
-                        <div class="panel">
-                            <div class="panel-heading">
-                                <div class="row">
-                                    <div class="col-xs-3">
-                                        <i class="fa fa-bar-chart-o fa-5x"></i>
-                                    </div>
-                                    <div class="col-xs-9 text-right">
-                                        <div class="huge"><?php echo $this->count ?></div>
-                                        <div>Tests Active!</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <a href="/index/tests">
-                                <div class="panel-footer">
-                                    <span class="pull-left">View Details</span>
-                                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                    <div class="clearfix"></div>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6">
-                        <div class="panel">
-                            <div class="panel-heading">
-                                <div class="row">
-                                    <div class="col-xs-3">
-                                        <i class="fa fa-warning fa-5x"></i>
-                                    </div>
-                                    <div class="col-xs-9 text-right">
-                                        <div class="huge"><?php echo $this->failed ?></div>
-                                        <div>Tests Failures!</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <a href="/index/failed">
-                                <div class="panel-footer">
-                                    <span class="pull-left">View Details</span>
-                                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                    <div class="clearfix"></div>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6">
-                        <div class="panel">
-                            <div class="panel-heading">
-                                <div class="row">
-                                    <div class="col-xs-3">
-                                        <i class="fa fa-database fa-5x"></i>
-                                    </div>
-                                    <div class="col-xs-9 text-right">
-                                        <div class="huge"><?php echo $this->uptime[0]['stotal'] ?></div>
-                                        <div>Tests Performed!</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <a href="#">
-                                <div class="panel-footer">
-                                    <span class="pull-left">View Details</span>
-                                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                    <div class="clearfix"></div>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6">
-                        <div class="panel">
-                            <div class="panel-heading">
-                                <div class="row">
-                                    <div class="col-xs-3">
-                                        <i class="fa fa-cloud fa-5x"></i>
-                                    </div>
-                                    <div class="col-xs-9 text-right">
-                                        <div class="huge"><?php echo $this->nodes[0]['tnodes'] ?></div>
-                                        <div>Nodes Used!</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <a href="/index/nodes">
-                                <div class="panel-footer">
-                                    <span class="pull-left">View Details</span>
-                                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                    <div class="clearfix"></div>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <!-- /.row -->
-                <div class="row">
-                    <div class="col-lg-12">
-                        <!--<div class="panel panel-default">-->
-                            <!--
-                            <div class="panel-heading">
-                                <h3 class="panel-title"><i class="fa fa-bar-chart-o fa-fw"></i> Test Performance for last 24hrs</h3>
-                            </div>
-                            -->
-                            <!--<div class="panel-body">-->
-                                <div id="container"></div>
-                            <!--</div>-->
-                        <!--</div>-->
-                    </div>
-                </div>
-                <!-- /.row -->
-            </div>
-            <!-- /.container-fluid -->
-        <!--</div>-->
-        <!-- /#page-wrapper -->
-<script>
-$(function () {
-    $('#container').highcharts({
-        chart: {
-            type: 'spline'
-        },
-        title: {
-	       text: null
-        },
-        xAxis: {
-            type: 'datetime',
-            dateTimeLabelFormats: { // don't display the dummy year
-                minute: '%H:%M',
-                month: '%e %b',
-                year: '%b'
-            },
-            title: {
-                text: 'Date/Time'
-            }
-        },
-        yAxis: {
-            labels: {
-                format: '{value} ms'
-            },
-            title: {
-                text: 'Total Time'
-            },
-            plotLines:[{
-                value: 2000,
-                color: '#ff0000',
-                width: 3,
-                label: {
-                    text: ''
-                }
-            }],
-            min: 0
-        },
-        tooltip: {
-            headerFormat: '<b>{series.name}</b><br>',
-            pointFormat: '{point.x:%e %b %H:%Mhrs}: <b>{point.y}ms</b>'
-        },
 
-        plotOptions: {
-            spline: {
-                marker: {
-                    enabled: true,
-                    symbol: 'circle'
+<ol class="breadcrumb">
+    <li class="active">
+        <i class="fa fa-dashboard"></i> Dashboard
+    </li>
+</ol>
+
+<div class="row">
+    <div class="col-lg-3 col-md-6">
+        <div class="panel">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-3">
+                        <i class="fa fa-bar-chart-o fa-5x"></i>
+                    </div>
+                    <div class="col-xs-9 text-right">
+                        <div class="huge"><?php echo $this->count ?></div>
+                        <div>Tests Active!</div>
+                    </div>
+                </div>
+            </div>
+            <a href="/index/tests">
+                <div class="panel-footer">
+                    <span class="pull-left">View Details</span>
+                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                    <div class="clearfix"></div>
+                </div>
+            </a>
+        </div>
+    </div>
+    <div class="col-lg-3 col-md-6">
+        <div class="panel">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-3">
+                        <i class="fa fa-warning fa-5x"></i>
+                    </div>
+                    <div class="col-xs-9 text-right">
+                        <div class="huge"><?php echo $this->failed ?></div>
+                        <div>Tests Failures!</div>
+                    </div>
+                </div>
+            </div>
+            <a href="/index/failed">
+                <div class="panel-footer">
+                    <span class="pull-left">View Details</span>
+                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                    <div class="clearfix"></div>
+                </div>
+            </a>
+        </div>
+    </div>
+    <div class="col-lg-3 col-md-6">
+        <div class="panel">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-3">
+                        <i class="fa fa-database fa-5x"></i>
+                    </div>
+                    <div class="col-xs-9 text-right">
+                        <div class="huge"><?php echo $this->uptime[0]['stotal'] ?></div>
+                        <div>Tests Performed!</div>
+                    </div>
+                </div>
+            </div>
+            <a href="#">
+                <div class="panel-footer">
+                    <span class="pull-left">View Details</span>
+                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                    <div class="clearfix"></div>
+                </div>
+            </a>
+        </div>
+    </div>
+    <div class="col-lg-3 col-md-6">
+        <div class="panel">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-3">
+                        <i class="fa fa-cloud fa-5x"></i>
+                    </div>
+                    <div class="col-xs-9 text-right">
+                        <div class="huge"><?php echo $this->nodes[0]['tnodes'] ?></div>
+                        <div>Nodes Used!</div>
+                    </div>
+                </div>
+            </div>
+            <a href="/index/nodes">
+                <div class="panel-footer">
+                    <span class="pull-left">View Details</span>
+                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                    <div class="clearfix"></div>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>
+<!-- /.row -->
+<div class="row">
+    <div class="col-lg-12">
+        <div id="container"></div>
+    </div>
+</div>
+<!-- /.row -->
+
+<script>
+    $(function () {
+        $('#container').highcharts({
+            chart: {
+                type: 'spline'
+            },
+            title: {
+               text: null
+            },
+            xAxis: {
+                type: 'datetime',
+                dateTimeLabelFormats: { // don't display the dummy year
+                    minute: '%H:%M',
+                    month: '%e %b',
+                    year: '%b'
+                },
+                title: {
+                    text: 'Date/Time'
                 }
-            }
-        },
-	series: <?php echo $this->chartData ?>
+            },
+            yAxis: {
+                labels: {
+                    format: '{value} ms'
+                },
+                title: {
+                    text: 'Total Time'
+                },
+                plotLines:[{
+                    value: 2000,
+                    color: '#ff0000',
+                    width: 3,
+                    label: {
+                        text: ''
+                    }
+                }],
+                min: 0
+            },
+            tooltip: {
+                headerFormat: '<b>{series.name}</b><br>',
+                pointFormat: '{point.x:%e %b %H:%Mhrs}: <b>{point.y}ms</b>'
+            },
+    
+            plotOptions: {
+                spline: {
+                    marker: {
+                        enabled: true,
+                        symbol: 'circle'
+                    }
+                }
+            },
+        series: <?php echo $this->chartData ?>
+        });
     });
-});
 </script>

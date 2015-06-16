@@ -15,22 +15,21 @@ class NodesController extends Zend_Controller_Action
         $nodeId = $this->_getParam('nodeid');
         $nodePerf = $this->_summary->nodePerf($nodeId);
         
-        $keysArray = array();
+        $nodeArray = array();
         
         $dataArray = array();
         
-        foreach ($nodePerf as $p) {
-            
-            $this->view->nodeName = $p->nodename;
-            $keysArray[] = $p->testname;
+        foreach ($nodePerf as $p) { 
+                    $dataArray = null;        
             $dataArray[] = array(
-                    'y' => $p->testname,
-                    $p->testname => number_format($p->total, 0, '.', '')
+                    $p->nodename, number_format($p->total, 0, '.', '')
             );
+            $nodeArray[] = array('name' => $p->testname, 'data' => $dataArray);
         }
+
+        $this->view->nodeName = $p->nodename;        
+        $this->view->chartData = json_encode($nodeArray, JSON_NUMERIC_CHECK);
         
-        $this->view->chartData = json_encode($dataArray);
-        $this->view->keys = json_encode($keysArray);
     }
 }
 

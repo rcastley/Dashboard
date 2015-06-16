@@ -13,30 +13,45 @@
                                 <h3 class="panel-title"><i class="fa fa-bar-chart-o fa-fw"></i> <?php echo $this->nodeName ?></h3>
                             </div>
                             <div class="panel-body">
-                                <div id="morris-bar-chart"></div>
+                                <div id="nodecontainer"></div>
                             </div>
                         </div>
                     </div>
                 </div>
                 <!-- /.row -->
 <script>
-//$(document).ready(function() {
-    // Line Chart
-var chart = Morris.Bar({
-        // ID of the element in which to draw the chart.
-        element: 'morris-bar-chart',
-        // Chart data records -- each entry in this array corresponds to a point on
-        // the chart.
-        data: <?php echo $this->chartData ?>,
-        // The name of the data record attribute that contains x-visitss.
-        xkey: 'y',
-        // A list of names of data record attributes that contain y-visitss.
-        ykeys: <?php echo $this->keys?>,
-        // Labels for the ykeys -- will be displayed when you hover over the
-        // chart.
-        labels: <?php echo $this->keys?>,
-        smooth: false,
-        postUnits: ' s',
-        resize: true
+$(function () {
+    $('#nodecontainer').highcharts({
+        chart: {
+            type: 'column'
+        },
+        title: {
+            text: null
+        },
+        xAxis: {
+            crosshair: false
+        },
+        yAxis: {
+            min: 0,
+            title: {
+                text: 'Total Time (ms)'
+            }
+        },
+        tooltip: {
+            headerFormat: '<table>',
+            pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                '<td style="padding:0"><b>{point.y:.1f} ms</b></td></tr>',
+            footerFormat: '</table>',
+            shared: true,
+            useHTML: true
+        },
+        plotOptions: {
+            column: {
+                pointPadding: 0.2,
+                borderWidth: 0
+            }
+        },
+        series: <?php echo $this->chartData ?>
     });
+});
 </script>

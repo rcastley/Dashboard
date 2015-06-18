@@ -68,9 +68,15 @@ Highcharts.theme = {
 		}
 	},
 	tooltip: {
-		backgroundColor: 'rgba(0, 0, 0, 0.85)',
+		snap: 0,
+        animation: false,
+        hideDelay: 0,
+        enabled: true,
+        backgroundColor: 'rgba(255, 255, 255, 1)',
+        shadow: false,
+		//backgroundColor: 'rgba(0, 0, 0, 0.85)',
 		style: {
-			color: '#F0F0F0'
+			color: '#222'
 		}
 	},
 	plotOptions: {

@@ -90,7 +90,7 @@
 $(function () {
     $('#container').highcharts({
         chart: {
-            type: 'spline'
+            type: 'areaspline'
         },
         title: {
 	       text: null
@@ -129,11 +129,14 @@ $(function () {
         },
 
         plotOptions: {
-            spline: {
+            areaspline: {
                 marker: {
                     enabled: true,
-                    symbol: 'circle'
-                }
+                    symbol: 'circle',
+                    radius: 3
+                },
+                fillColor: 'rgba(100, 100, 100, 0.1)',
+                lineWidth: 1,
             }
         },
 	series: <?php echo $this->chartData ?>

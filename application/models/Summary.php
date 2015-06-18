@@ -329,4 +329,3 @@ class Application_Model_Summary
         return $this->_error;
     }
 }
-

@@ -210,8 +210,6 @@ public function comparePerf ($id, $from = '-14 day', $to = '-7 day')
         ), 
                 array(
                         'testid',
-                        //'interval' => "datetime((strftime('%s', timestamp) / 1800) * 1800, 'unixepoch')",
-                        //'interval' => "(strftime('%s', timestamp) / 1800 * 1800 * 1000)",
                         'interval' => "timestamp",
                         'total' => 'AVG(total)',
                         'doc' => 'documentcomplete',
@@ -332,7 +330,7 @@ public function comparePerf ($id, $from = '-14 day', $to = '-7 day')
                 array(
                         'testid',
                         'total' => 'AVG(total)'
-                // 'city' => 'n.city'
+                        // 'city' => 'n.city'
                                 ))
             ->join(
                 array(

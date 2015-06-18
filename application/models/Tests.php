@@ -92,4 +92,3 @@ class Application_Model_Tests
         return $this->_monitor;
     }
 }
-

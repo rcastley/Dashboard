@@ -92,4 +92,3 @@ class Application_Model_Nodes
         return $this->_carrier;
     }
 }
-

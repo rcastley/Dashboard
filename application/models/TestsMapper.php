@@ -62,4 +62,3 @@ class Application_Model_TestsMapper
         return $resultSet;  
     }
 }
-

@@ -81,9 +81,6 @@ class IndexController extends Zend_Controller_Action
         }
 
         $this->view->chartData = $testArray;
-
-        //print_r ($testArray);
-
     }
 
     public function testdetailAction ()
@@ -97,10 +94,6 @@ class IndexController extends Zend_Controller_Action
         $this->view->lastWeek = $this->_summary->comparePerf($testId, '-2 days', '-1 day');
 
         $this->view->thisWeek = $this->_summary->comparePerf($testId, '-1 day', '-0 hour');
-
-        //print_r ($this->view->thisWeek);
-
-        //print_r ($this->view->lastWeek);
         
         $testArray = array();
 
@@ -116,33 +109,21 @@ class IndexController extends Zend_Controller_Action
         
         
         $this->view->testName = $testName->name;
-        //$this->view->chartData = json_encode($dataArray);
-        //$this->view->label = json_encode($dateArray);
-        //$this->view->keys = json_encode($keysArray);
 
         $this->view->chartData = json_encode($testArray, JSON_NUMERIC_CHECK);
         
         $city = $this->_summary->perfByCity($testId, '-7 day');
 
-        /*
-        foreach ($city as $c) {
-            $mapArray[] = array(
-                    $c->city,
-                    $c->city . ' - ' . $c->carrier . ': ' .
-                             number_format($c->total, 0, '.', '') . ' ms'
-            );
-        }
-        */
         foreach ($city as $c) {
 
-            $mapArray = null; 
+            $mapArray = null;
+
             $mapArray[] = array(
 
                              number_format($c->total, 0, '.', '')
             );
             $cityArray[] = array('name' => $c->city . ' - ' . $c->carrier, 'data' => $mapArray);
         }
-
 
         $this->view->mapData = json_encode($cityArray, JSON_NUMERIC_CHECK);        
     }

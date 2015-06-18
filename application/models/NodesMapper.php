@@ -80,4 +80,3 @@ class Application_Model_NodesMapper
         return $resultSet;
     }
 }
-

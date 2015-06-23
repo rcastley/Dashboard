@@ -74,7 +74,6 @@ Highcharts.theme = {
         enabled: true,
         backgroundColor: 'rgba(255, 255, 255, 1)',
         shadow: false,
-		//backgroundColor: 'rgba(0, 0, 0, 0.85)',
 		style: {
 			color: '#222'
 		}

@@ -166,14 +166,10 @@ $(function () {
 				format: '{value} ms'
 			}
 		},
-		tooltip: {
-			headerFormat: '<table>',
-			pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-				'<td style="padding:0"><b>{point.y:.1f} ms</b></td></tr>',
-			footerFormat: '</table>',
-			shared: true,
-			useHTML: true
-		},
+        tooltip: {
+            headerFormat: '<b>{series.name}: </b>',
+            pointFormat: '<b>{point.y}ms</b>'
+        },
 		plotOptions: {
 			column: {
 				pointPadding: 0.2,

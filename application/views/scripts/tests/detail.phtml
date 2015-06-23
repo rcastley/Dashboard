@@ -1,0 +1,186 @@
+<ol class="breadcrumb">
+	<li>
+		<i class="fa fa-dashboard"></i> <a href="/">Dashboard</a>
+	</li>
+	<li>
+		<i class="fa fa-folder"></i> <a href="/tests">Tests</a>
+	</li>
+	<li class="active">
+		<i class="fa fa-bar-chart-o"></i> <?php echo $this->testName?>
+	</li>
+</ol>
+
+<div class="row">
+	<div class="col-lg-12">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h3 class="panel-title">
+					<i class="fa fa-bar-chart-o fa-fw"></i> <?php echo $this->testName?> - Last 7 days
+				</h3>
+			</div>
+			<div class="panel-body">
+				<div id="container"></div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-lg-6">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h3 class="panel-title">
+					<i class="fa fa-cloud fa-fw"></i> Node(s)
+				</h3>
+			</div>
+			<div class="panel-body">
+			   <div id="mapcontainer"></div>
+			</div>
+		</div>
+	</div>
+	<div class="col-lg-6">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h3 class="panel-title">
+					<i class="fa fa-calendar fa-fw"></i> Daily Comparison
+				</h3>
+			</div>
+			<div class="panel-body">
+				<div class="table-responsive">
+					<table class="table table-hover center">
+						<thead>
+							<tr>
+								<th class="huge">YESTERDAY</th>
+								<th></th>
+								<th class="huge">TODAY</th>
+							</tr>
+						</thead>
+						<tbody>								   
+							<tr>
+								<td>BACKEND<br/><?php echo $this->lastWeek[0]['wait']?>ms</td>
+								<td><?php echo number_format((1 - $this->thisWeek[0]['wait'] / $this->lastWeek[0]['wait']) * 100, 0, '.', '')?>%</td>
+								<td>BACKEND<br/><?php echo $this->thisWeek[0]['wait']?>ms</td>
+
+							</tr>
+							<tr>
+								<td>START RENDER<br/><?php echo $this->lastWeek[0]['render']?>ms</td>
+								<td><?php echo @number_format((1 - $this->thisWeek[0]['render'] / $this->lastWeek[0]['render']) * 100, 0, '.', '')?>%</td>
+								<td>START RENDER<br/><?php echo $this->thisWeek[0]['render']?>ms</td>
+							</tr>
+							<tr>
+								<td>DOCUMENT COMPLETE<br/><?php echo $this->lastWeek[0]['doc']?>ms</td>
+								<td><?php echo @number_format((1 - $this->thisWeek[0]['doc'] / $this->lastWeek[0]['doc']) * 100, 0, '.', '')?>%</td>
+								<td>DOCUMENT COMPLETE<br/><?php echo $this->thisWeek[0]['doc']?>ms</td>
+							</tr>
+							<tr>
+								<td>FULL RENDER<br/><?php echo number_format($this->lastWeek[0]['total'], 0, '.', '')?>ms</td>
+								<td><?php echo number_format((1 - $this->thisWeek[0]['total'] / $this->lastWeek[0]['total']) * 100, 0, '.', '')?>%</td>
+								<td>FULL RENDER<br/><?php echo number_format($this->thisWeek[0]['total'], 0, '.', '')?>ms</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script>
+$(function () {
+	$('#container').highcharts({
+		chart: {
+			type: 'areaspline'
+		},
+		title: {
+		   text: null
+		},
+		xAxis: {
+			type: 'datetime',
+			dateTimeLabelFormats: { // don't display the dummy year
+				minute: '%H:%M',
+				month: '%e %b',
+				year: '%b'
+			},
+			title: {
+				text: 'Date/Time'
+			}
+		},
+		yAxis: {
+			labels: {
+				format: '{value} ms'
+			},
+			title: {
+				text: 'Total Time'
+			},
+			plotLines:[{
+				value: 2000,
+				color: '#ff0000',
+				width: 3,
+				label: {
+					text: ''
+				}
+			}],
+			min: 0
+		},
+		tooltip: {
+			headerFormat: '<b>{series.name}</b><br>',
+			pointFormat: '{point.x:%e %b %H:%Mhrs}: <b>{point.y}ms</b>'
+		},
+
+		plotOptions: {
+			areaspline: {
+				marker: {
+					enabled: true,
+					symbol: 'circle',
+					radius: 3
+				},
+				fillColor: 'rgba(100, 100, 100, 0.1)',
+				lineWidth: 1,
+			}
+		},
+	series: <?php echo $this->chartData ?>
+	});
+});
+
+
+$(function () {
+	$('#mapcontainer').highcharts({
+		chart: {
+			type: 'column'
+		},
+		title: {
+			text: null
+		},
+		xAxis: {
+			crosshair: false,
+			labels: {
+				enabled: false
+			}
+		},
+		yAxis: {
+			min: 0,
+			title: {
+				text: 'Total Time (ms)'
+			},
+			labels: {
+				format: '{value} ms'
+			}
+		},
+		tooltip: {
+			headerFormat: '<table>',
+			pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+				'<td style="padding:0"><b>{point.y:.1f} ms</b></td></tr>',
+			footerFormat: '</table>',
+			shared: true,
+			useHTML: true
+		},
+		plotOptions: {
+			column: {
+				pointPadding: 0.2,
+				borderWidth: 0
+			}
+		},
+		series: <?php echo $this->mapData ?>
+	});
+});
+</script>

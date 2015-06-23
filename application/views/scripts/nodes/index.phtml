@@ -21,12 +21,14 @@
                 </thead>
                 <tbody>
                     <?php foreach($this->nodes as $node) :?>
+                    
                     <tr>
                         <td><?php  echo $node->id ?> </td>
                         <td><a href="/nodes/summary/nodeid/<?php echo $node->id ?>"><?php  echo $node->name ?></a></td>
                         <td><?php echo $node->city ?></td>
                         <td><?php  echo $node->carrier ?> </td>        
                     </tr>
+                    
                     <?php endforeach;?>
                 </tbody>
             </table>

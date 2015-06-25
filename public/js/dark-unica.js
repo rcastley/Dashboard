@@ -40,9 +40,9 @@ Highcharts.theme = {
 				color: '#E0E0E3'
 			}
 		},
-		lineColor: '#707073',
+		lineColor: '#444',
 		minorGridLineColor: '#505053',
-		tickColor: '#707073',
+		tickColor: '#444',
 		title: {
 			style: {
 				color: '#A0A0A3'
@@ -51,15 +51,15 @@ Highcharts.theme = {
 		}
 	},
 	yAxis: {
-		gridLineColor: '#707073',
+		gridLineColor: '#444',
 		labels: {
 			style: {
 				color: '#E0E0E3'
 			}
 		},
-		lineColor: '#707073',
+		lineColor: '#444',
 		minorGridLineColor: '#505053',
-		tickColor: '#707073',
+		tickColor: '#444',
 		tickWidth: 1,
 		title: {
 			style: {

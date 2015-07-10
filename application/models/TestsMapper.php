@@ -61,4 +61,9 @@ class Application_Model_TestsMapper
         
         return $resultSet;  
     }
+
+    public function delete ($id) 
+    {
+        $this->getDbTable()->delete('id = ' . (int) $id);
+    }
 }

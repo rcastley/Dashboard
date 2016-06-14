@@ -14,37 +14,40 @@ class CollectorController extends Zend_Controller_Action
         $nodeMapper = new Application_Model_NodesMapper();
         $testMapper = new Application_Model_TestsMapper();
         $summaryMapper = new Application_Model_SummaryMapper();
-        
+
         $xml = simplexml_load_string($this->getRequest()->getRawBody());
-        
+
         $dom = new DOMDocument('1.0');
         $dom->preserveWhiteSpace = false;
         $dom->formatOutput = true;
         $dom->loadXML($xml->asXML());
         // echo $dom->saveXML();
-        
+
         $f = fopen("/tmp/capture.xml", "w+");
         fwrite($f, $dom->saveXML());
         fclose($f);
-        
+
         if ($this->getRequest()->isPost()) {
-            
-            if ($xml->NodeName) {
-                list($city, $carrier, $y) = (split('[-,]', $xml->NodeName));
-                if (isset($y)) {
-                    $carrier = $y;
-                }
+            $a = preg_split('/[,-]+/', $xml->Nodeame);
+
+            $city = trim($a[0]);
+
+            if (isset($a[2])) {
+                $carrier = trim($a[2]);
+            } else {
+                $carrier = trim($a[1]);
             }
+
             $newNode = new Application_Model_Nodes(
                     array(
                             'id' => $xml->attributes()->nodeId,
                             'name' => $xml->NodeName,
-                            'city' => trim($city),
-                            'carrier' => trim ($carrier)
+                            'city' => $city,
+                            'carrier' => $carrier
                     ));
-            
+
             $nodeMapper->create($newNode);
-            
+
             $newTest = new Application_Model_Tests(
                     array(
                             'id' => $xml->attributes()->testId,
@@ -52,9 +55,9 @@ class CollectorController extends Zend_Controller_Action
                             'monitor' => $xml->TestDetail->MonitorTypeId,
                             'name' => $xml->TestDetail->Name
                     ));
-            
+
             $testMapper->create($newTest);
-            
+
             $summary = new Application_Model_Summary(
                     array(
                             'testid' => $xml->attributes()->testId,
@@ -80,8 +83,9 @@ class CollectorController extends Zend_Controller_Action
                             'requests' => $xml->Summary->Counter->Requests,
                             'error' => isset($xml->Summary->Error) ? $xml->Summary->Error->attributes()->code : 0
                     ));
-            
+
             $summaryMapper->create($summary);
         }
     }
 }
+

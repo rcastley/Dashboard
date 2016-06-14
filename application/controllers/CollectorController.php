@@ -28,14 +28,12 @@ class CollectorController extends Zend_Controller_Action
         fclose($f);
 
         if ($this->getRequest()->isPost()) {
-            $a = preg_split('/[,-]+/', $xml->Nodeame);
-
+            $a = preg_split('/[,-]+/', $xml->NodeName);
             $city = trim($a[0]);
+            $carrier = trim($a[1]);
 
             if (isset($a[2])) {
                 $carrier = trim($a[2]);
-            } else {
-                $carrier = trim($a[1]);
             }
 
             $newNode = new Application_Model_Nodes(
